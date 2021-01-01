@@ -1,15 +1,24 @@
 <template>
   <div>
-    <h1>LANDING PAGE</h1>
+    <Navbar/>
   </div>
 </template>
 
 <script>
+import Navbar from '../../components/landing/module/Navbar'
+
 export default {
-  name: 'Landing'
+  name: 'Landing',
+  components: {
+    Navbar
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+
+body {
+  background: #FAFCFF;
+}
 
 </style>

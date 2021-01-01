@@ -1,0 +1,13 @@
+.btn-landing {
+  box-sizing: border-box;
+  border-radius: 12px;
+  height: 48px;
+  width: 120px;
+  border-radius: 12px;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+}

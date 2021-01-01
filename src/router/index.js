@@ -2,6 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/landing/Landing.vue'
 
+// Auth
+import MainAuth from '../views/auth/main/MainAuth.vue'
+import Login from '../views/auth/login/Login.vue'
+import SignUp from '../views/auth/signup/SignUp.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,7 +14,26 @@ const routes = [
     path: '/',
     name: 'Landing',
     component: Landing
+  },
+  {
+    path: '/auth',
+    name: 'MainAuth',
+    component: MainAuth,
+    redirect: '/auth/login',
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: Login
+      },
+      {
+        path: 'signup',
+        name: 'SignUp',
+        component: SignUp
+      }
+    ]
   }
+
 ]
 
 const router = new VueRouter({
