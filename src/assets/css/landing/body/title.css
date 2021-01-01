@@ -1,0 +1,22 @@
+.title-landing {
+  font-family: Nunito Sans;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 93px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 40px;
+  color: #3A3D42;
+}
+
+.title-landing .span-landing {
+  color: #6379F4;
+}
+
+@media (max-width: 575px) {
+  .title-landing {
+    font-size: 48px;
+    line-height: 1.5em;
+  }
+}
