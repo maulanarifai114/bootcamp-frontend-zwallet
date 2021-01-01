@@ -9,10 +9,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-auto my-3 my-md-0 mr-md-4">
-              <BtnOutline title="Login"/>
+              <BtnOutline title="Login" @click="goLogin"/>
             </li>
             <li class="nav-item ml-auto">
-              <BtnSolid title="Sign Up"/>
+              <BtnSolid title="Sign Up" @click="goSignup"/>
             </li>
           </ul>
         </div>
@@ -24,6 +24,7 @@
 <script>
 import BtnOutline from '../base/button/BtnOutline'
 import BtnSolid from '../base/button/BtnSolid'
+import navbar from '../../../mixins/landing/navbar'
 
 export default {
   name: 'Navbar',
@@ -31,11 +32,7 @@ export default {
     BtnOutline,
     BtnSolid
   },
-  data () {
-    return {
-      local: process.env.VUE_APP_BASE_APP
-    }
-  }
+  mixins: [navbar]
 }
 </script>
 

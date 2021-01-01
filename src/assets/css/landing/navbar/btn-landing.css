@@ -11,3 +11,7 @@
   line-height: 25px;
   text-align: center;
 }
+
+.btn-landing:hover {
+  opacity: .8;
+}

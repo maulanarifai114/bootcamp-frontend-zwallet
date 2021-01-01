@@ -25,11 +25,13 @@ const routes = [
         path: 'login',
         name: 'Login',
         component: Login
+        // meta: { requiresVisitor: true }
       },
       {
         path: 'signup',
         name: 'SignUp',
         component: SignUp
+        // meta: { requiresVisitor: true }
       }
     ]
   }
@@ -46,7 +48,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!localStorage.getItem('token')) {
       next({
-        path: '/login'
+        path: '/auth/login'
       })
     } else {
       next()
@@ -54,7 +56,7 @@ router.beforeEach((to, from, next) => {
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
     if (localStorage.getItem('token')) {
       next({
-        path: '/room'
+        path: '/main/dashboard'
       })
     } else {
       next()
