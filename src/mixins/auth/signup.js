@@ -42,8 +42,8 @@ const signup = {
       this.$router.push('/auth/login')
     },
     signup () {
-      Swal.fire('Success', 'Just login now!', 'success')
-      this.$router.push('/auth/login')
+      Swal.fire('Success', 'Create Your Pin Now!', 'success')
+      this.$router.push('/auth/createpin')
     }
   }
 }

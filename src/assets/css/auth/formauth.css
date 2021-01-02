@@ -95,6 +95,10 @@
   opacity: .8;
 }
 
+.img-margin {
+  margin: 0 0 50px 0;
+}
+
 @media (max-width: 767px) {
 
   .right-auth-form {

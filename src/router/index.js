@@ -10,6 +10,8 @@ import Login from '../views/auth/login/Login.vue'
 import SignUp from '../views/auth/signup/SignUp.vue'
 import Forgot from '../views/auth/forgotpass/ForgotPass.vue'
 import CreateNewPass from '../views/auth/forgotpass/CreateNewPass.vue'
+import CreatePin from '../views/auth/signup/CreatePin.vue'
+import CreatePinSuccess from '../views/auth/signup/CreatePinSuccess.vue'
 
 Vue.use(VueRouter)
 
@@ -47,6 +49,18 @@ const routes = [
         path: 'createnewpass/:token',
         name: 'CreateNewPass',
         component: CreateNewPass
+        // meta: { requiresVisitor: true }
+      },
+      {
+        path: 'createpin',
+        name: 'CreatePin',
+        component: CreatePin
+        // meta: { requiresVisitor: true }
+      },
+      {
+        path: 'createpinsuccess',
+        name: 'CreatePinSuccess',
+        component: CreatePinSuccess
         // meta: { requiresVisitor: true }
       }
     ]
