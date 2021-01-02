@@ -1,35 +1,27 @@
 import Swal from 'sweetalert2'
 // import axios from 'axios'
 
-const signup = {
+const newpass = {
   data () {
     return {
       message: '',
-      username: '',
-      email: '',
       password: '',
+      newpassword: '',
       type: 'password',
       class: 'input-text-inactive',
-      iconUsername: 'person-inactive',
-      iconEmail: 'mail-inactive',
       iconPassword: 'lock-inactive'
     }
   },
   methods: {
     focusInput () {
       this.class = 'input-text-active'
-      this.iconUsername = 'person-active'
-      this.iconEmail = 'mail-active'
       this.iconPassword = 'lock-active'
-    },
-    inputUsername (e) {
-      this.username = e
-    },
-    inputEmail (e) {
-      this.email = e
     },
     inputPassword (e) {
       this.password = e
+    },
+    inputNewPassword (e) {
+      this.newpassword = e
     },
     changeType () {
       if (this.type === 'password') {
@@ -38,13 +30,14 @@ const signup = {
         this.type = 'password'
       }
     },
-    goPageLogin () {
-      this.$router.push('/auth/login')
-    },
-    signup () {
-      Swal.fire('Success', 'Just login now!', 'success')
-      this.$router.push('/auth/login')
+    reset () {
+      if (this.password !== this.newpassword) {
+        Swal.fire('Failed', 'Passwords Are Not The Same!', 'error')
+      } else {
+        Swal.fire('Success', 'Let\'s go login', 'success')
+        this.$router.push('/auth/login')
+      }
     }
   }
 }
-export default signup
+export default newpass

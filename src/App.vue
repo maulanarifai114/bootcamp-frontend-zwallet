@@ -28,10 +28,12 @@ export default {
 transition: .3s;
 box-sizing: border-box;
 text-decoration: none;
+font-family: Nunito;
 }
 
-body {
-  font-family: 'Nunito', 'Arial', sans-serif;
+html *
+{
+  font-family: 'Nunito' !important;
 }
 
 /* width */

@@ -6,7 +6,7 @@
     <h4 class="paragraph-right-auth">To reset your password, you must type your e-mail and we will send a link to your email and you will be directed to the reset password screens.</h4>
     <!-- Wrapper Form -->
     <div class="right-auth-form">
-      <!-- Form Login -->
+      <!-- Form Forgot Password -->
       <FormForgot/>
       <div class="mb-50 w-100"></div>
     </div>

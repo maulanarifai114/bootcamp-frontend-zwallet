@@ -20,7 +20,7 @@ import BtnAuth from '@/components/auth/base/BtnAuth'
 import forgot from '@/mixins/auth/forgot'
 
 export default {
-  name: 'FormLogin',
+  name: 'FormForgot',
   components: {
     InputTextAuth,
     BtnAuth

@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2'
+// import axios from 'axios'
+
 const login = {
   data () {
     return {
@@ -11,7 +14,7 @@ const login = {
     }
   },
   methods: {
-    focusInput (e) {
+    focusInput () {
       this.class = 'input-text-active'
       this.iconEmail = 'mail-active'
       this.iconPassword = 'lock-active'
@@ -36,7 +39,8 @@ const login = {
       this.$router.push('/auth/signup')
     },
     login () {
-      alert('Data Terisi')
+      Swal.fire('Success', 'Let\'s Fill Your Wallet', 'success')
+      this.$router.push('/main/dashboard')
     }
   }
 }

@@ -1,4 +1,7 @@
-const signup = {
+import Swal from 'sweetalert2'
+// import axios from 'axios'
+
+const forgot = {
   data () {
     return {
       message: '',
@@ -8,7 +11,7 @@ const signup = {
     }
   },
   methods: {
-    focusInput (e) {
+    focusInput () {
       this.class = 'input-text-active'
       this.iconEmail = 'mail-active'
     },
@@ -16,9 +19,9 @@ const signup = {
       this.email = e
     },
     confirm () {
-      alert('Data Terisi')
+      Swal.fire('Success', 'Check your email now', 'success')
       this.$router.push('/auth/login')
     }
   }
 }
-export default signup
+export default forgot
