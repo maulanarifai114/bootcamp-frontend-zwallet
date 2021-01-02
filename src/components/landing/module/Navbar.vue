@@ -26,7 +26,7 @@
 <script>
 import BtnOutline from '../base/button/BtnOutline'
 import BtnSolid from '../base/button/BtnSolid'
-import navbar from '../../../mixins/landing/navbar'
+import navbar from '@/mixins/landing/navbar'
 
 export default {
   name: 'NavbarLanding',

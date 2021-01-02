@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+// Landing Page
 import Landing from '../views/landing/Landing.vue'
 
 // Auth
