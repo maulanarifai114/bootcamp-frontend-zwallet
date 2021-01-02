@@ -1,0 +1,28 @@
+.box-features {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.title-box-features {
+  font-family: Nunito Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0 0 15px 0;
+}
+
+.title-box-features span {
+  color: #6379F4;
+  margin-right: 15px;
+}

@@ -3,6 +3,7 @@
     <SectionOne/>
     <SectionTwo/>
     <SectionThree/>
+    <SectionFour/>
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import SectionOne from '../../../components/landing/module/section/SectionOne'
 import SectionTwo from '../../../components/landing/module/section/SectionTwo'
 import SectionThree from '../../../components/landing/module/section/SectionThree'
+import SectionFour from '../../../components/landing/module/section/SectionFour'
 
 export default {
   name: 'Body',
   components: {
     SectionOne,
     SectionTwo,
-    SectionThree
+    SectionThree,
+    SectionFour
   }
 }
 </script>
