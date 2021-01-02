@@ -1,0 +1,45 @@
+.footer-landing {
+  box-sizing: border-box;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.title-footer {
+  font-family: Nunito Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.p-footer-landing-1 {
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(239, 239, 239, 0.75);
+}
+
+hr {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-top: 1px solid rgba(239, 239, 239, 0.75);
+}
+
+.p-footer-landing-2 {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #EFEFEF;
+}

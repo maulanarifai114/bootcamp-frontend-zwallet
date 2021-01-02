@@ -29,7 +29,7 @@ import BtnSolid from '../base/button/BtnSolid'
 import navbar from '../../../mixins/landing/navbar'
 
 export default {
-  name: 'Navbar',
+  name: 'NavbarLanding',
   components: {
     BtnOutline,
     BtnSolid
