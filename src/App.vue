@@ -34,4 +34,28 @@ body {
   font-family: 'Nunito', 'Arial', sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  transition: .3s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  width: fit-content;
+  transition: .3s;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6379f44d;
+  transition: .3s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6379f4b3;
+  transition: .3s;
+}
+
 </style>
