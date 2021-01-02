@@ -1,0 +1,23 @@
+.p-custom-1 {
+  margin-bottom: 50px;
+}
+
+.p-custom-2 {
+  margin-bottom: 20px;
+}
+
+.btn-try-custom {
+  color: #ffffff;
+  background-color: #6379F4;
+  margin: 0 0 50px 0;
+}
+
+.img-1 {
+  margin-right: 25px;
+}
+
+@media (max-width: 1199px) {
+  .p-custom-1 {
+    width: 100%;
+  }
+}
