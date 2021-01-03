@@ -1,10 +1,10 @@
 <template>
-  <button type="submit" class="btn-auth w-100" @click="$emit('click')">{{title}}</button>
+  <button type="button" class="btn-auth w-100" @click="$emit('click')">{{title}}</button>
 </template>
 
 <script>
 export default {
-  name: 'BtnAuth',
+  name: 'BtnReset',
   props: ['title']
 }
 </script>

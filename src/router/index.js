@@ -52,7 +52,7 @@ const routes = [
         // meta: { requiresVisitor: true }
       },
       {
-        path: 'createpin',
+        path: 'createpin/:token',
         name: 'CreatePin',
         component: CreatePin
         // meta: { requiresVisitor: true }

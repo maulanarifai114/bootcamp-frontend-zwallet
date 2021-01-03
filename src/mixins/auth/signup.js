@@ -73,7 +73,7 @@ const signup = {
       console.log(data)
       // axios.post()
       Swal.fire('Success', 'Check Your Email Now!', 'success')
-      this.$router.push('/auth/createpin')
+      this.$router.push('/auth/login')
     }
   }
 }

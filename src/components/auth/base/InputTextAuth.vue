@@ -35,7 +35,7 @@ input {
   font-size: 16px;
   line-height: 23px;
   color: #3A3D42;
-  background-color: #ffffff;
+  background-color: #ffffff00;
   width: 100%;
 }
 
