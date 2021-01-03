@@ -6,7 +6,7 @@
       <InputTextAuth :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
       <div class="mb-70 w-100"></div>
       <!-- Password -->
-      <InputPassAuth :class="this.class" :icon="this.iconPassword" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
+      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
       <div class="mb-20 w-100"></div>
       <!-- Forgot Password -->
       <div class="d-flex justify-content-end">

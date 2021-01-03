@@ -12,7 +12,8 @@ const signup = {
       class: 'input-text-inactive',
       iconUsername: 'person-inactive',
       iconEmail: 'mail-inactive',
-      iconPassword: 'lock-inactive'
+      iconPassword: 'lock-inactive',
+      iconEye: 'eye-cross-inactive'
     }
   },
   methods: {
@@ -21,6 +22,11 @@ const signup = {
       this.iconUsername = 'person-active'
       this.iconEmail = 'mail-active'
       this.iconPassword = 'lock-active'
+      if (this.type === 'password') {
+        this.iconEye = 'eye-cross-active'
+      } else if (this.type === 'text') {
+        this.iconEye = 'eye-active'
+      }
     },
     inputUsername (e) {
       this.username = e
@@ -34,15 +40,39 @@ const signup = {
     changeType () {
       if (this.type === 'password') {
         this.type = 'text'
+        if (this.class === 'input-text-inactive') {
+          this.iconEye = 'eye-inactive'
+        } else if (this.class === 'input-text-active') {
+          this.iconEye = 'eye-active'
+        } else if (this.class === 'input-text-error') {
+          this.iconEye = 'eye-error'
+        }
       } else {
         this.type = 'password'
+        if (this.class === 'input-text-inactive') {
+          this.iconEye = 'eye-cross-inactive'
+        } else if (this.class === 'input-text-active') {
+          this.iconEye = 'eye-cross-active'
+        } else if (this.class === 'input-text-error') {
+          this.iconEye = 'eye-cross-error'
+        }
       }
     },
     goPageLogin () {
       this.$router.push('/auth/login')
     },
     signup () {
-      Swal.fire('Success', 'Create Your Pin Now!', 'success')
+      const username = `@${this.username}`
+      const email = this.email
+      const password = this.password
+      const data = {
+        username,
+        email,
+        password
+      }
+      console.log(data)
+      // axios.post()
+      Swal.fire('Success', 'Check Your Email Now!', 'success')
       this.$router.push('/auth/createpin')
     }
   }

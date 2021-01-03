@@ -2,7 +2,7 @@
   <div class="d-flex">
     <!-- Icon Left -->
     <div class="icon mr-3">
-      <img :src="require(`@/assets/img/auth/${icon}.svg`)" alt="">
+      <img :src="require(`@/assets/img/auth/${icon}.svg`)" alt="" width="24px" height="24px">
     </div>
     <!-- Input -->
     <input v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" required>

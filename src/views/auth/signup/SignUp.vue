@@ -8,7 +8,7 @@
     <div class="right-auth-form">
       <!-- Form Login -->
       <FormSignup/>
-      <!-- Page Sign Up -->
+      <!-- Go Page Login -->
       <div class="mb-40 w-100"></div>
       <h6 class="reason">Already have an account? Let’s <span @click="goPageLogin">Login</span></h6>
       <div class="mb-50 w-100"></div>

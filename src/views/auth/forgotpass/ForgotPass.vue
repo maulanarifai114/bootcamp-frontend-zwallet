@@ -8,6 +8,9 @@
     <div class="right-auth-form">
       <!-- Form Forgot Password -->
       <FormForgot/>
+      <!-- Go Page Login -->
+      <div class="mb-40 w-100"></div>
+      <h6 class="reason">Comeback to page <span @click="goPageLogin">Login</span></h6>
       <div class="mb-50 w-100"></div>
     </div>
   </div>

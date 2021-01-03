@@ -21,6 +21,9 @@ const forgot = {
     confirm () {
       Swal.fire('Success', 'Check your email now', 'success')
       this.$router.push('/auth/login')
+    },
+    goPageLogin () {
+      this.$router.push('/auth/login')
     }
   }
 }

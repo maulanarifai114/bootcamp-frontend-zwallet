@@ -8,10 +8,10 @@
     <input v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" minlength="8" required>
     <!-- Icon Password -->
     <div class="icon ml-3" v-if="type === 'password'" @click="$emit('changeType')">
-      <img src="@/assets/img/auth/eye-crossed.svg" alt="eye">
+      <img :src="require(`@/assets/img/auth/${eye}.svg`)" alt="eye" width="24px" height="24px">
     </div>
     <div class="icon ml-3" v-if="type === 'text'" @click="$emit('changeType')">
-      <img src="@/assets/img/auth/eye-crossed.svg" alt="eye">
+      <img :src="require(`@/assets/img/auth/${eye}.svg`)" alt="eye" width="24px" height="24px">
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'InputPassAuth',
-  props: ['icon', 'type', 'placeholder'],
+  props: ['icon', 'type', 'placeholder', 'eye'],
   data () {
     return {
       inputData: ''

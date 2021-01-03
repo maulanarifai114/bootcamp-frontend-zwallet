@@ -9,7 +9,7 @@
       <InputTextAuth :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
       <div class="mb-70 w-100"></div>
       <!-- Password -->
-      <InputPassAuth :class="this.class" :icon="this.iconPassword" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
+      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
       <!-- If Email has already registered -->
       <div class="mb-90 w-100 d-flex justify-content-center align-items-center ">
         <h6 class="invalid" v-if="this.message === 'Email Has Already Registered!'">Email Has Already Registered!</h6>
