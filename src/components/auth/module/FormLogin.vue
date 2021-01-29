@@ -12,10 +12,10 @@
       <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
       <div class="mb-20 w-100">
         <div class="mb-2"></div>
-        <p class="error-z-c" v-if="isPassword1 === 1">{{validatePassword1}}</p>
-        <p class="error-z-c" v-if="isPassword2 === 1">{{validatePassword2}}</p>
-        <p class="error-z-c" v-if="isPassword3 === 1">{{validatePassword3}}</p>
-        <p class="error-z-c" v-if="isPassword4 === 1">{{validatePassword4}}</p>
+        <p class="error-z-c mb-2" v-if="isPassword1 === 1">{{validatePassword1}}</p>
+        <p class="error-z-c mb-2" v-if="isPassword2 === 1">{{validatePassword2}}</p>
+        <p class="error-z-c mb-2" v-if="isPassword3 === 1">{{validatePassword3}}</p>
+        <p class="error-z-c mb-2" v-if="isPassword4 === 1">{{validatePassword4}}</p>
       </div>
       <!-- Forgot Password -->
       <div class="d-flex justify-content-end">
@@ -33,10 +33,16 @@
 </template>
 
 <script>
+// Components
 import InputTextAuth from '@/components/auth/base/InputTextAuth'
 import InputPassAuth from '@/components/auth/base/InputPassAuth'
 import BtnAuth from '@/components/auth/base/BtnAuth'
+// Mixins
 import login from '@/mixins/auth/login'
+import regexPassword from '@/mixins/auth/regexPassword'
+import regexEmail from '@/mixins/auth/regexEmail'
+import changeColor from '@/mixins/auth/changeColor'
+import inputValue from '@/mixins/auth/inputValue'
 
 export default {
   name: 'FormLogin',
@@ -45,7 +51,7 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [login]
+  mixins: [login, regexPassword, regexEmail, changeColor, inputValue]
 }
 </script>
 

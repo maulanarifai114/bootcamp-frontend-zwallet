@@ -29,7 +29,7 @@
 }
 
 .mb-20 {
-  height: 20px;
+  min-height: 20px;
 }
 
 .forgot {

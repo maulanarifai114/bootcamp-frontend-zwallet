@@ -1,7 +1,6 @@
 export default {
   data () {
     return {
-      password: '',
       isPassword1: 0,
       isPassword2: 0,
       isPassword3: 0,
