@@ -21,6 +21,7 @@ import BtnGoLogin from '@/components/auth/base/BtnGoLogin'
 import pinsuccess from '@/mixins/auth/pinsuccess'
 
 export default {
+  title: 'Success',
   name: 'CreatePinSuccess',
   components: {
     BtnGoLogin

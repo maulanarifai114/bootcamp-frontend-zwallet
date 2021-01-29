@@ -18,6 +18,7 @@ import FormNewPass from '@/components/auth/module/FormNewPass'
 import newpass from '@/mixins/auth/newpass'
 
 export default {
+  title: 'Create New Password',
   name: 'CreateNewPass',
   components: {
     FormNewPass

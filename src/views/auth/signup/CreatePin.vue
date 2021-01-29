@@ -17,6 +17,7 @@ import FormPin from '@/components/auth/module/FormPin'
 import pin from '@/mixins/auth/pin'
 
 export default {
+  title: 'Create Your Pin',
   name: 'CreatePin',
   components: {
     FormPin

@@ -13,6 +13,7 @@ import Footer from '../../components/landing/module/Footer'
 
 export default {
   name: 'Landing',
+  title: 'Zwallet - App that Covering Banking Needs',
   components: {
     Navbar,
     Body,

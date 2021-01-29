@@ -22,6 +22,7 @@ import signup from '@/mixins/auth/signup'
 
 export default {
   name: 'SignUp',
+  title: 'Sign Up',
   components: {
     FormSignup
   },

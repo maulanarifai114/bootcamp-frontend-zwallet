@@ -4,10 +4,19 @@
     <form @submit.prevent="login">
       <!-- Email -->
       <InputTextAuth :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
-      <div class="mb-70 w-100"></div>
+      <div class="mb-70 w-100">
+        <div class="mb-2"></div>
+        <div class="error-z-c" v-if="isEmail === 1">Email format is incorrect</div>
+      </div>
       <!-- Password -->
       <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
-      <div class="mb-20 w-100"></div>
+      <div class="mb-20 w-100">
+        <div class="mb-2"></div>
+        <p class="error-z-c" v-if="isPassword1 === 1">{{validatePassword1}}</p>
+        <p class="error-z-c" v-if="isPassword2 === 1">{{validatePassword2}}</p>
+        <p class="error-z-c" v-if="isPassword3 === 1">{{validatePassword3}}</p>
+        <p class="error-z-c" v-if="isPassword4 === 1">{{validatePassword4}}</p>
+      </div>
       <!-- Forgot Password -->
       <div class="d-flex justify-content-end">
         <h6 class="forgot" @click="goPageForgot">Forgot Password</h6>

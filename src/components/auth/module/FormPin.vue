@@ -26,15 +26,15 @@
 <script>
 import InputPin from '@/components/auth/base/InputPin'
 import BtnAuth from '@/components/auth/base/BtnAuth'
-import BtnReset from '@/components/auth/base/BtnReset'
+// import BtnReset from '@/components/auth/base/BtnReset'
 import pin from '@/mixins/auth/pin'
 
 export default {
   name: 'FormSignup',
   components: {
     InputPin,
-    BtnAuth,
-    BtnReset
+    BtnAuth
+    // BtnReset
   },
   mixins: [pin]
 }

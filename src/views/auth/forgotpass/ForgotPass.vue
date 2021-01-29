@@ -21,6 +21,7 @@ import FormForgot from '@/components/auth/module/FormForgot'
 import forgot from '@/mixins/auth/forgot'
 
 export default {
+  title: 'Forgot Password',
   name: 'ForgotPass',
   components: {
     FormForgot

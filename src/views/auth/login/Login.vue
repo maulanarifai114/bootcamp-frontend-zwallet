@@ -22,6 +22,7 @@ import login from '@/mixins/auth/login'
 
 export default {
   name: 'Login',
+  title: 'Login',
   components: {
     FormLogin
   },
