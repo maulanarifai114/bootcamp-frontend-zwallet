@@ -45,7 +45,7 @@ export default {
 }
 
 .navbar {
-  background: #FAFCFF;
+  background: #fafcff00;
 }
 
 .navbar-brand {

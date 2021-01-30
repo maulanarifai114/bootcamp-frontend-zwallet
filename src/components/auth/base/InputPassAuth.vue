@@ -1,11 +1,11 @@
 <template>
-  <div class="d-flex">
+  <label class="d-flex" for="password">
     <!-- Icon Left -->
     <div class="icon mr-3">
       <img :src="require(`@/assets/img/auth/${icon}.svg`)" alt="">
     </div>
     <!-- Input -->
-    <input v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" minlength="8" required>
+    <input id="password" v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" minlength="8" required>
     <!-- Icon Password -->
     <div class="icon ml-3" v-if="type === 'password'" @click="$emit('changeType')">
       <img :src="require(`@/assets/img/auth/${eye}.svg`)" alt="eye" width="24px" height="24px">
@@ -13,7 +13,7 @@
     <div class="icon ml-3" v-if="type === 'text'" @click="$emit('changeType')">
       <img :src="require(`@/assets/img/auth/${eye}.svg`)" alt="eye" width="24px" height="24px">
     </div>
-  </div>
+  </label>
 </template>
 
 <script>

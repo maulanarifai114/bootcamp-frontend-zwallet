@@ -1,18 +1,18 @@
 <template>
-  <div class="d-flex">
+  <label class="d-flex" :for="id">
     <!-- Icon Left -->
     <div class="icon mr-3">
       <img :src="require(`@/assets/img/auth/${icon}.svg`)" alt="" width="24px" height="24px">
     </div>
     <!-- Input -->
-    <input v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" required>
-  </div>
+    <input :id="id" v-model="inputData" :type="type" :placeholder="placeholder" @input="inputTheData" @focus="$emit('focus')" required>
+  </label>
 </template>
 
 <script>
 export default {
   name: 'InputTextAuth',
-  props: ['icon', 'type', 'placeholder'],
+  props: ['icon', 'type', 'placeholder', 'id'],
   data () {
     return {
       inputData: ''

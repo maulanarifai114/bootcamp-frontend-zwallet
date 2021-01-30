@@ -19,31 +19,32 @@ const signup = {
     }
   },
   methods: {
-    moveOnMax (field, nextFieldID) {
-      if (field) {
-        document.getElementById(nextFieldID).focus()
-      }
-    },
     focusInput () {
       this.class = 'input-text-active'
     },
     inputPinOne (e) {
       this.pinBox.pinOne = e
+      this.$refs.two.$el.children[0].focus()
     },
     inputPinTwo (e) {
       this.pinBox.pinTwo = e
+      this.$refs.three.$el.children[0].focus()
     },
     inputPinThree (e) {
       this.pinBox.pinThree = e
+      this.$refs.four.$el.children[0].focus()
     },
     inputPinFour (e) {
       this.pinBox.pinFour = e
+      this.$refs.five.$el.children[0].focus()
     },
     inputPinFive (e) {
       this.pinBox.pinFive = e
+      this.$refs.six.$el.children[0].focus()
     },
     inputPinSix (e) {
       this.pinBox.pinSix = e
+      this.$refs.button.$el.focus()
     },
     createPin () {
       const pinBox = this.pinBox

@@ -27,4 +27,8 @@ export default {
   opacity: .8;
 }
 
+.btn-auth:focus {
+  opacity: .8;
+}
+
 </style>

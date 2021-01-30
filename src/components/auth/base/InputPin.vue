@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'InputPin',
-  props: ['id', 'focusInput'],
+  props: ['id'],
   data () {
     return {
       inputData: ''
@@ -44,7 +44,7 @@ input::-webkit-inner-spin-button {
 
 .input-text-inactive {
   height: 65px;
-  width: 53px;
+  width: 55px;
   border-radius: 10px;
   border: 1px solid rgba(169, 169, 169, 0.6);
   overflow: hidden;
@@ -52,7 +52,7 @@ input::-webkit-inner-spin-button {
 
 .input-text-active {
   height: 65px;
-  width: 53px;
+  width: 55px;
   border-radius: 10px;
   border: 1px solid #6379F4!important;
   overflow: hidden;
@@ -60,10 +60,27 @@ input::-webkit-inner-spin-button {
 
 .input-text-error {
   height: 65px;
-  width: 53px;
+  width: 55px;
   border-radius: 10px;
   border: 1px solid #FF5B37;
   overflow: hidden;
+}
+
+@media (max-width: 410px) {
+  .input-text-inactive, .input-text-active, .input-text-error {
+    height: 52px;
+    width: 44px;
+  }
+}
+
+@media (max-width: 334px) {
+  input {
+    font-size: 24px;
+  }
+  .input-text-inactive, .input-text-active, .input-text-error {
+    height: 45.5px;
+    width: 38.5px;
+  }
 }
 
 </style>

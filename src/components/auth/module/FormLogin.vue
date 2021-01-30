@@ -3,15 +3,15 @@
     <!-- Form -->
     <form @submit.prevent="login">
       <!-- Email -->
-      <InputTextAuth :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
+      <InputTextAuth id="email" :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
       <div class="mb-70 w-100">
-        <div class="mb-2"></div>
+        <div class="mb-8"></div>
         <div class="error-z-c" v-if="isEmail === 1">Email format is incorrect</div>
       </div>
       <!-- Password -->
       <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Enter your password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
       <div class="mb-20 w-100">
-        <div class="mb-2"></div>
+        <div class="mb-8"></div>
         <p class="error-z-c mb-2" v-if="isPassword1 === 1">{{validatePassword1}}</p>
         <p class="error-z-c mb-2" v-if="isPassword2 === 1">{{validatePassword2}}</p>
         <p class="error-z-c mb-2" v-if="isPassword3 === 1">{{validatePassword3}}</p>
