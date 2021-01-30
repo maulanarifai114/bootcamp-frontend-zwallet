@@ -1,10 +1,14 @@
 <template>
   <div class="container-fluid">
     <Navbar/>
+    <BottomBar/>
     <div class="container">
-      <div class="w-100 wrap-main">
-        <h1>Main</h1>
-        <router-view/>
+      <div class="w-100 wrap-main d-flex">
+        <Sidebar/>
+        <!-- Right Side -->
+        <aside class="right-side">
+          <router-view/>
+        </aside>
       </div>
     </div>
     <Footer/>
@@ -14,16 +18,25 @@
 <script>
 import Navbar from '@/components/main/module/Navbar'
 import Footer from '@/components/main/module/Footer'
+import Sidebar from '@/components/main/module/Sidebar'
+import BottomBar from '@/components/main/module/BottomBar'
+
 export default {
   name: 'Main',
   components: {
     Navbar,
-    Footer
+    Footer,
+    Sidebar,
+    BottomBar
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.right-side {
+  width: 850px;
+}
 
 .container-fluid {
   padding: 0;
@@ -31,8 +44,9 @@ export default {
 }
 
 .container {
-  padding-top: 180px;
+  padding: 180px 0 0 0;
   min-height: 100vh;
+  margin-bottom: 35px;
 }
 
 .wrap-main {
