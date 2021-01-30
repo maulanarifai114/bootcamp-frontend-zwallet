@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <input :id="id" v-model="inputData" type="number" @keyup="$emit('keyup', $event.target.value)" @input="inputTheData" @focus="$emit('focus')" min="0" max="9" maxlength="1" required>
+    <input :id="id" v-model="inputData" type="password" @keyup="$emit('keyup', $event.target.value)" @input="inputTheData" @focus="$emit('focus')" min="0" max="9" maxlength="1" required>
   </div>
 </template>
 

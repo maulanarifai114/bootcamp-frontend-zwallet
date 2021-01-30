@@ -47,13 +47,26 @@ const signup = {
       this.$refs.button.$el.focus()
     },
     createPin () {
+      const regex = /^[0-9]+$/
       const pinBox = this.pinBox
       const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
-      console.log(pinBox)
-      console.log(pin)
-      // axios.post()
-      Swal.fire('Success', 'Let\'s Go Login', 'success')
-      this.$router.push('/auth/createpinsuccess')
+      const failed = () => {
+        Swal.fire('Failed', 'Pin must be number', 'error')
+        this.pinBox = {
+          pinOne: '',
+          pinTwo: '',
+          pinThree: '',
+          pinFour: '',
+          pinFive: '',
+          pinSix: ''
+        }
+      }
+      const success = () => {
+        Swal.fire('Success', 'Let\'s Go Login', 'success')
+        // axios.post()
+        this.$router.push('/auth/createpinsuccess')
+      }
+      !regex.test(pin) ? failed() : success()
     }
   }
 }
