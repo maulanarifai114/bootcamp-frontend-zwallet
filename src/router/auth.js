@@ -16,38 +16,38 @@ export default {
     {
       path: 'login',
       name: 'Login',
-      component: Login
-      // meta: { requiresVisitor: true }
+      component: Login,
+      meta: { requiresVisitor: true }
     },
     {
       path: 'signup',
       name: 'SignUp',
-      component: SignUp
-      // meta: { requiresVisitor: true }
+      component: SignUp,
+      meta: { requiresVisitor: true }
     },
     {
       path: 'forgot',
       name: 'Forgot',
-      component: Forgot
-      // meta: { requiresVisitor: true }
+      component: Forgot,
+      meta: { requiresVisitor: true }
     },
     {
       path: 'createnewpass/:token',
       name: 'CreateNewPass',
-      component: CreateNewPass
-      // meta: { requiresVisitor: true }
+      component: CreateNewPass,
+      meta: { requiresVisitor: true }
     },
     {
       path: 'createpin/:token',
       name: 'CreatePin',
-      component: CreatePin
-      // meta: { requiresVisitor: true }
+      component: CreatePin,
+      meta: { requiresVisitor: true }
     },
     {
       path: 'createpinsuccess',
       name: 'CreatePinSuccess',
-      component: CreatePinSuccess
-      // meta: { requiresVisitor: true }
+      component: CreatePinSuccess,
+      meta: { requiresVisitor: true }
     }
   ]
 }

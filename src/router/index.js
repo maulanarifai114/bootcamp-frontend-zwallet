@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Landing from '../views/landing/Landing.vue'
 // Auth
 import Auth from './auth'
+// Main
+import Main from './main'
 
 Vue.use(VueRouter)
 
@@ -14,7 +16,8 @@ const routes = [
     name: 'Landing',
     component: Landing
   },
-  Auth
+  Auth,
+  Main
 ]
 
 const router = new VueRouter({
