@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Navbar from '@/components/main/module/Navbar'
 import Footer from '@/components/main/module/Footer'
 import Sidebar from '@/components/main/module/Sidebar'
@@ -28,6 +29,14 @@ export default {
     Footer,
     Sidebar,
     BottomBar
+  },
+  methods: {
+    ...mapActions({
+      getProfile: 'profile/getProfile'
+    })
+  },
+  mounted () {
+    this.getProfile()
   }
 }
 </script>

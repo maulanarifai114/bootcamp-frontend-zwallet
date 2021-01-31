@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+// Import Vuex
+import profile from './profile'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -40,5 +43,6 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    profile
   }
 })

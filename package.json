@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "libphonenumber-js": "^1.9.9",
     "register-service-worker": "^1.7.1",
     "sweetalert2": "^10.12.6",
     "vue": "^2.6.11",

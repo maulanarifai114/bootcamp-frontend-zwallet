@@ -5,12 +5,12 @@
       <div @click="goProfile" class="d-flex justify-content-center align-items-center wrap-profile">
         <div>
           <div class="wrap-img">
-            <img src="../../../assets/img/home/radenmra.jpg" alt="photo">
+            <img :src="photo === '' ? avatar : photo" alt="photo">
           </div>
         </div>
-        <div class="wrap-contact">
-          <h4>Raden Maulana</h4>
-          <h6>+6285771926851</h6>
+        <div class="wrap-contact d-flex flex-column align-items-start">
+          <h4>{{firstName === '' ? username : firstName}}</h4>
+          <h6>{{phone}}</h6>
         </div>
         <!-- <img class="bell" src="../../../assets/img/home/bell.svg" alt="bell"> -->
       </div>
@@ -19,15 +19,30 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Navbar',
+  data () {
+    return {
+      avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+    }
+  },
   methods: {
     zwallet () {
-      this.$router.push('/main/dashboard')
+      this.$router.push('/main/dashboard').catch(() => {})
     },
     goProfile () {
-      this.$router.push('/main/profile')
+      this.$router.push('/main/profile').catch(() => {})
     }
+  },
+  computed: {
+    ...mapGetters({
+      photo: 'profile/getPhoto',
+      username: 'profile/getUsername',
+      firstName: 'profile/getFirstName',
+      phone: 'profile/getPhone'
+    })
   }
 }
 </script>
@@ -105,7 +120,7 @@ h6 {
 
 @media (max-width: 425px) {
   .wrap-contact {
-    display: none;
+    display: none!important;
   }
 }
 
