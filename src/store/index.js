@@ -4,6 +4,7 @@ import axios from 'axios'
 
 // Import Vuex
 import profile from './profile'
+import transfer from './transfer'
 
 Vue.use(Vuex)
 
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    profile
+    profile,
+    transfer
   }
 })

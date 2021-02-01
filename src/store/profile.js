@@ -10,20 +10,9 @@ const profile = {
     lastName: '',
     balance: 0,
     phone: '+62'
-    // photo: 'https://images.unsplash.com/photo-1609863554781-35c7867dedb7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-    // firstName: 'Emanuel',
-    // lastName: 'Minca',
-    // balance: 100000,
-    // phone: '+6285771926851'
   }),
   mutations: {
     SET_PROFILE (state, payload) {
-      // return {
-      //   ...state,
-      //   ...payload
-      // }
-      // console.log(state)
-      // console.log(payload)
       state.id = payload.id
       state.photo = payload.photo
       state.username = payload.username
