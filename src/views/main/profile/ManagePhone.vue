@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Manage Phone',
   name: 'ManagePhone'
 }
 </script>

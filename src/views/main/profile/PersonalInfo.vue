@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Personal Information',
   name: 'PersonalInfo'
 }
 </script>

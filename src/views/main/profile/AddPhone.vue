@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Add Phone',
   name: 'AddPhone'
 }
 </script>

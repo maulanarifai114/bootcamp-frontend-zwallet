@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Confirmation',
   name: 'Confirmation'
 }
 </script>

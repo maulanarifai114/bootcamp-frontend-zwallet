@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Change Pin',
   name: 'ChangePin'
 }
 </script>

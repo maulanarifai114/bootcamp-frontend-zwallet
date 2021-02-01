@@ -10,6 +10,7 @@ import MainDashboard from '../../../components/main/module/dashboard/MainDashboa
 import HistoryDashboard from '../../../components/main/module/dashboard/HistoryDashboard'
 
 export default {
+  title: 'Zwallet',
   name: 'Dashboard',
   components: {
     MainDashboard,

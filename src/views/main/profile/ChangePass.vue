@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Change Password',
   name: 'ChangePass'
 }
 </script>

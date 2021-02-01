@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  title: 'Top Up',
   name: 'Topup'
 }
 </script>
