@@ -118,6 +118,12 @@ h6 {
   margin: 0 0 0 30px
 }
 
+@media (max-width: 575px) {
+  nav {
+    height: 100px;
+  }
+}
+
 @media (max-width: 425px) {
   .wrap-contact {
     display: none!important;

@@ -62,4 +62,14 @@ export default {
   min-height: 678px;
 }
 
+@media (max-width: 575px) {
+  .container {
+    padding: 140px 0 0 0
+  }
+
+  .right-side {
+    padding: 0 2.5%;
+  }
+}
+
 </style>

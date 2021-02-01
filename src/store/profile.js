@@ -39,7 +39,7 @@ const profile = {
           username: 'maulanarifai114',
           firstName: '',
           lastName: 'Maulana',
-          balance: 100000,
+          balance: 20000000,
           phone: '+6284337927659'
         }
         context.commit('SET_PROFILE', payload)
