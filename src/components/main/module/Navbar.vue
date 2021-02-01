@@ -5,7 +5,7 @@
       <div @click="goProfile" class="d-flex justify-content-center align-items-center wrap-profile">
         <div>
           <div class="wrap-img">
-            <img :src="photo === '' ? avatar : photo" alt="photo">
+            <img :src="photo === '' ? image : photo" alt="photo">
           </div>
         </div>
         <div class="wrap-contact d-flex flex-column align-items-start">
@@ -25,7 +25,7 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     }
   },
   methods: {
