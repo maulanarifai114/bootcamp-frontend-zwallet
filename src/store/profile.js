@@ -20,6 +20,15 @@ const profile = {
       state.lastName = payload.lastName
       state.balance = payload.balance
       state.phone = payload.phone
+    },
+    REMOVE_PROFILE (state) {
+      state.id = ''
+      state.photo = ''
+      state.username = ''
+      state.firstName = ''
+      state.lastName = ''
+      state.balance = 0
+      state.phone = '+62'
     }
   },
   actions: {

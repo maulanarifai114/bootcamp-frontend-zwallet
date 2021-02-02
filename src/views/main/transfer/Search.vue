@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <!-- Title History -->
-    <h3 class="title-history">Search Receiver</h3>
+    <h3 class="title-search">Search Receiver</h3>
     <div class="search d-flex w-100">
       <div>
         <img src="../../../assets/img/home/search.svg" alt="icon">
@@ -90,7 +90,7 @@ export default {
   padding: 30px
 }
 
-.title-history {
+.title-search {
   font-family: Nunito Sans;
   font-style: normal;
   font-weight: bold;
