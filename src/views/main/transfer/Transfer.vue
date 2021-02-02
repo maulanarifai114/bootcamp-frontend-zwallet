@@ -79,14 +79,12 @@ export default {
         const time = moment().locale('id').format('LT')
         data.notes = `Transfer ${amount} to ${this.$store.getters['transfer/getName']}`
         data.date = `${date} - ${time}`
-        console.log(data)
         this.setAmount(data)
         this.$router.push('/main/confirmation')
       } else {
         const date = moment().locale('en').format('ll')
         const time = moment().locale('id').format('LT')
         data.date = `${date} - ${time}`
-        console.log(data)
         this.setAmount(data)
         this.$router.push('/main/confirmation')
       }
