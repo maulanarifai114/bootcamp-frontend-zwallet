@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="wrap-contact d-flex flex-column align-items-start">
-          <h4>{{firstName === '' ? username : firstName}}</h4>
+          <h4>{{`${firstName} ${lastName}`}}</h4>
           <h6>{{phone}}</h6>
         </div>
         <!-- <img class="bell" src="../../../assets/img/home/bell.svg" alt="bell"> -->
@@ -39,8 +39,8 @@ export default {
   computed: {
     ...mapGetters({
       photo: 'profile/getPhoto',
-      username: 'profile/getUsername',
       firstName: 'profile/getFirstName',
+      lastName: 'profile/getLastName',
       phone: 'profile/getPhone'
     })
   }
@@ -122,9 +122,6 @@ h6 {
   nav {
     height: 100px;
   }
-}
-
-@media (max-width: 425px) {
   .wrap-contact {
     display: none!important;
   }

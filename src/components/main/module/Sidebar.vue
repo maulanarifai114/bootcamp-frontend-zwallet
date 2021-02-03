@@ -43,6 +43,7 @@ import dashboard from '../../../mixins/main/dashboard/sidebar/dashboard'
 import transfer from '../../../mixins/main/dashboard/sidebar/transfer'
 import topup from '../../../mixins/main/dashboard/sidebar/topup'
 import profile from '../../../mixins/main/dashboard/sidebar/profile'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'Sidebar',
@@ -72,6 +73,7 @@ export default {
     },
     logout () {
       localStorage.removeItem('token')
+      Swal.fire('Success', 'Comeback anytime you want', 'success')
       this.$router.push('/auth/login').catch(() => {})
     }
   }
