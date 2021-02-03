@@ -53,7 +53,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ setStatus: 'status/SET_STATUS' }),
+    ...mapMutations({ setStatus: 'status/SET_STATUS', setBalance: 'profile/SET_BALANCE' }),
     focusInput () {
       this.class = 'input-text-active'
     },
@@ -105,12 +105,14 @@ export default {
           pinSix: ''
         }
         this.setStatus(data)
+        this.setBalance(data.amount)
         Swal.fire('Failed', 'An error occurred', 'error')
         this.$router.push('/main/failed')
       }
       const success = () => {
         // axios.post()
         this.setStatus(data)
+        this.setBalance(data.amount)
         Swal.fire('Success', 'You\'ve been transfer to your friend', 'success')
         this.$router.push('/main/success')
       }

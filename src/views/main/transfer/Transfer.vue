@@ -81,7 +81,7 @@ export default {
         const amount = parseInt(this.money).toLocaleString('id-ID')
         const date = moment().locale('en').format('ll')
         const time = moment().locale('id').format('LT')
-        data.notes = `Transfer ${amount} to ${this.$store.getters['transfer/getName']}`
+        data.notes = `Transfer Rp${amount} to ${this.$store.getters['transfer/getName']}`
         data.date = `${date} - ${time}`
         this.setConfirmation(data)
         this.$router.push('/main/confirmation')

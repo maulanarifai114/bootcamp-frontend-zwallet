@@ -21,6 +21,9 @@ const profile = {
       state.balance = payload.balance
       state.phone = payload.phone
     },
+    SET_BALANCE (state, payload) {
+      state.balance -= payload
+    },
     REMOVE_PROFILE (state) {
       state.id = ''
       state.photo = ''
