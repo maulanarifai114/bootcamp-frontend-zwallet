@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     goManagePhone () {
-      this.$router.push('/main/managephone')
+      this.$store.getters['profile/getPhone'] === '+62'
+        ? this.$router.push('/main/addphone')
+        : this.$router.push('/main/managephone')
     }
   },
   computed: {
