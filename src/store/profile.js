@@ -47,7 +47,7 @@ const profile = {
           lastName: 'Hoe',
           balance: 20000000,
           phone: '+6284337927659',
-          email: 'ellyhoe30@gmal.com'
+          email: 'ellyhoe30@gmail.com'
         }
         context.commit('SET_PROFILE', payload)
       }, 2000)
@@ -76,6 +76,9 @@ const profile = {
         const phoneNumber = parsePhoneNumber(state.phone)
         return phoneNumber.formatInternational()
       }
+    },
+    getEmail (state) {
+      return state.email
     }
   }
 }

@@ -1,19 +1,26 @@
 <template>
-  <div class="box-detail">
-    <h4 class="title-box-detail">{{title}}</h4>
-    <h2 class="value-detail" v-if="type === 'value'">{{value}}</h2>
-    <h2 class="value-detail" v-else-if="type === 'amount'">Rp{{amountbalance}}</h2>
+  <div @click="$emit('click')" class="box-detail d-flex justify-content-between align-items-center">
+    <div>
+      <h4 class="title-box-detail">{{title}}</h4>
+      <h2 class="value-detail" v-if="type === 'value'">{{value}}</h2>
+      <h2 class="value-detail" v-else-if="type === 'amount'">Rp{{amountbalance}}</h2>
+    </div>
+    <img class="icon" v-if="icon === 'icon'" src="../../../../assets/img/home/arrow-active.svg" height="35" alt="icon">
   </div>
 </template>
 
 <script>
 export default {
   name: 'BoxDetail',
-  props: ['title', 'value', 'amountbalance', 'type']
+  props: ['title', 'value', 'amountbalance', 'type', 'icon']
 }
 </script>
 
 <style lang="scss" scoped>
+
+.icon {
+  transform: rotate(90deg);
+}
 
 .box-detail {
   padding: 15px;
