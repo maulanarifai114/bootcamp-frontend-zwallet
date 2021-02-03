@@ -95,7 +95,6 @@ export default {
         }
       }
       const success = () => {
-        this.$emit('change')
         // axios.post()
         Swal.fire('Success', 'You\'ve been transfer to your friend', 'success')
         // Swal.fire('Failed', 'An error occurred', 'error')

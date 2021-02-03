@@ -62,9 +62,6 @@ export default {
   },
   methods: {
     ...mapMutations({ receiver: 'transfer/SET_RECEIVER' }),
-    focused () {
-      this.$refs.receiver.focus()
-    },
     phone (phone) {
       return parsePhoneNumber(phone).formatInternational()
     },
@@ -72,9 +69,6 @@ export default {
       this.receiver(item)
       this.$router.push('/main/transfer')
     }
-  },
-  mounted () {
-    this.focused()
   }
 }
 </script>

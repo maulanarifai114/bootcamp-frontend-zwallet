@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import BoxDetail from '@/components/main/base/transfer/BoxDetail.vue'
 import BtnTransfer from '@/components/main/base/transfer/BtnTransfer.vue'
 import ShowPin from '@/components/main/base/transfer/ShowPin.vue'
@@ -52,8 +52,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({ removeConfirmation: 'transfer/REMOVE_CONFIRMATION' }),
     checkReceiver () {
-      if (this.$store.getters['transfer/getId'] === '') {
+      if (this.$store.getters['confirmation/getId'] === '') {
         this.$router.push('/main/search')
       }
     },
@@ -66,18 +67,21 @@ export default {
   },
   computed: {
     ...mapGetters({
-      id: 'transfer/getId',
-      name: 'transfer/getName',
-      photo: 'transfer/getPhoto',
-      phone: 'transfer/getPhone',
-      amount: 'transfer/getAmount',
-      notes: 'transfer/getNotes',
-      date: 'transfer/getDate',
+      id: 'confirmation/getId',
+      name: 'confirmation/getName',
+      photo: 'confirmation/getPhoto',
+      phone: 'confirmation/getPhone',
+      amount: 'confirmation/getAmount',
+      notes: 'confirmation/getNotes',
+      date: 'confirmation/getDate',
       balance: 'profile/getBalance'
     })
   },
   mounted () {
     this.checkReceiver()
+  },
+  destroyed () {
+    this.removeConfirmation()
   }
 }
 </script>

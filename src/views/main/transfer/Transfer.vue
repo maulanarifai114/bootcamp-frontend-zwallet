@@ -17,7 +17,7 @@
     <!-- Input Amount -->
     <div class="d-flex w-100 justify-content-center">
       <!-- <h2 class="rupiah" v-if="money.length > 0">Rp.</h2> -->
-      <input ref="money" type="number" class="money w-100" placeholder="0.00" v-model="money">
+      <input type="number" class="money w-100" placeholder="0.00" v-model="money">
     </div>
     <!-- Available -->
     <h6 class="available">Rp{{getBalance.toLocaleString('id-ID')}} Available</h6>
@@ -56,7 +56,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ setAmount: 'transfer/SET_AMOUNT' }),
+    ...mapMutations({ setConfirmation: 'confirmation/SET_CONFIRMATION', removeReceiver: 'transfer/REMOVE_RECEIVER' }),
     checkReceiver () {
       if (this.$store.getters['transfer/getId'] === '') {
         this.$router.push('/main/search')
@@ -67,6 +67,10 @@ export default {
     },
     continueNext () {
       const data = {
+        id: this.$store.getters['transfer/getId'],
+        name: this.$store.getters['transfer/getName'],
+        photo: this.$store.getters['transfer/getPhoto'],
+        phone: this.$store.getters['transfer/getPhone'],
         amount: parseInt(this.money),
         notes: this.notes,
         date: ''
@@ -79,13 +83,13 @@ export default {
         const time = moment().locale('id').format('LT')
         data.notes = `Transfer ${amount} to ${this.$store.getters['transfer/getName']}`
         data.date = `${date} - ${time}`
-        this.setAmount(data)
+        this.setConfirmation(data)
         this.$router.push('/main/confirmation')
       } else {
         const date = moment().locale('en').format('ll')
         const time = moment().locale('id').format('LT')
         data.date = `${date} - ${time}`
-        this.setAmount(data)
+        this.setConfirmation(data)
         this.$router.push('/main/confirmation')
       }
     }
@@ -102,8 +106,10 @@ export default {
     }
   },
   mounted () {
-    this.$refs.money.focus()
     this.checkReceiver()
+  },
+  destroyed () {
+    this.removeReceiver()
   }
 }
 </script>
