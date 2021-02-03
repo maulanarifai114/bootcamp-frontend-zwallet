@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import InputPin from '@/components/auth/base/InputPin.vue'
 import BtnTransfer from './BtnTransfer'
 import Swal from 'sweetalert2'
@@ -52,6 +53,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({ setStatus: 'status/SET_STATUS' }),
     focusInput () {
       this.class = 'input-text-active'
     },
@@ -80,6 +82,15 @@ export default {
       this.$refs.button.$el.focus()
     },
     confirm () {
+      const data = {
+        id: this.$store.getters['confirmation/getId'],
+        name: this.$store.getters['confirmation/getName'],
+        photo: this.$store.getters['confirmation/getPhoto'],
+        phone: this.$store.getters['confirmation/getPhone'],
+        amount: this.$store.getters['confirmation/getAmount'],
+        notes: this.$store.getters['confirmation/getNotes'],
+        date: this.$store.getters['confirmation/getDate']
+      }
       const regex = /^[0-9]+$/
       const pinBox = this.pinBox
       const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
@@ -93,13 +104,15 @@ export default {
           pinFive: '',
           pinSix: ''
         }
+        this.setStatus(data)
+        Swal.fire('Failed', 'An error occurred', 'error')
+        this.$router.push('/main/failed')
       }
       const success = () => {
         // axios.post()
+        this.setStatus(data)
         Swal.fire('Success', 'You\'ve been transfer to your friend', 'success')
-        // Swal.fire('Failed', 'An error occurred', 'error')
         this.$router.push('/main/success')
-        // this.$router.push('/main/failed')
       }
       !regex.test(pin) ? failed() : success()
     }

@@ -6,6 +6,7 @@ import axios from 'axios'
 import profile from './profile'
 import transfer from './transfer'
 import confirmation from './confirmation'
+import status from './status'
 
 Vue.use(Vuex)
 
@@ -47,6 +48,7 @@ export default new Vuex.Store({
   modules: {
     profile,
     transfer,
-    confirmation
+    confirmation,
+    status
   }
 })

@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ removeConfirmation: 'transfer/REMOVE_CONFIRMATION' }),
+    ...mapMutations({ removeConfirmation: 'confirmation/REMOVE_CONFIRMATION' }),
     checkReceiver () {
       if (this.$store.getters['confirmation/getId'] === '') {
         this.$router.push('/main/search')
