@@ -14,6 +14,7 @@ const signup = {
         pinFive: '',
         pinSix: ''
       },
+      displayNext: 0,
       type: 'password',
       class: 'input-text-inactive'
     }
@@ -44,7 +45,9 @@ const signup = {
     },
     inputPinSix (e) {
       this.pinBox.pinSix = e
-      this.$refs.button.$el.focus()
+      this.displayNext === 0
+        ? this.$refs.button.$el.focus()
+        : this.$refs.button2.$el.focus()
     },
     createPin () {
       const regex = /^[0-9]+$/
@@ -60,11 +63,78 @@ const signup = {
           pinFive: '',
           pinSix: ''
         }
+        this.$refs.one.$el.children[0].value = ''
+        this.$refs.two.$el.children[0].value = ''
+        this.$refs.three.$el.children[0].value = ''
+        this.$refs.four.$el.children[0].value = ''
+        this.$refs.five.$el.children[0].value = ''
+        this.$refs.six.$el.children[0].value = ''
       }
       const success = () => {
         Swal.fire('Success', 'Let\'s Go Login', 'success')
         // axios.post()
         this.$router.push('/auth/createpinsuccess')
+      }
+      !regex.test(pin) ? failed() : success()
+    },
+    changePin () {
+      const regex = /^[0-9]+$/
+      const pinBox = this.pinBox
+      const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
+      const failed = () => {
+        Swal.fire('Failed', 'Pin must be number', 'error')
+        this.pinBox = {
+          pinOne: '',
+          pinTwo: '',
+          pinThree: '',
+          pinFour: '',
+          pinFive: '',
+          pinSix: ''
+        }
+        this.$refs.one.$el.children[0].value = ''
+        this.$refs.two.$el.children[0].value = ''
+        this.$refs.three.$el.children[0].value = ''
+        this.$refs.four.$el.children[0].value = ''
+        this.$refs.five.$el.children[0].value = ''
+        this.$refs.six.$el.children[0].value = ''
+      }
+      const success = () => {
+        Swal.fire('Success', 'You have been change your pin', 'success')
+        // axios.post()
+        this.$router.push('/main/profile')
+      }
+      !regex.test(pin) ? failed() : success()
+    },
+    checkPin () {
+      const regex = /^[0-9]+$/
+      const pinBox = this.pinBox
+      const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
+      const failed = () => {
+        Swal.fire('Failed', 'Pin must be number', 'error')
+        this.pinBox = {
+          pinOne: '',
+          pinTwo: '',
+          pinThree: '',
+          pinFour: '',
+          pinFive: '',
+          pinSix: ''
+        }
+        this.$refs.one.$el.children[0].value = ''
+        this.$refs.two.$el.children[0].value = ''
+        this.$refs.three.$el.children[0].value = ''
+        this.$refs.four.$el.children[0].value = ''
+        this.$refs.five.$el.children[0].value = ''
+        this.$refs.six.$el.children[0].value = ''
+      }
+      const success = () => {
+        Swal.fire('Now replace your pin with a new one', '', 'success')
+        this.displayNext = 1
+        this.$refs.one.$el.children[0].value = ''
+        this.$refs.two.$el.children[0].value = ''
+        this.$refs.three.$el.children[0].value = ''
+        this.$refs.four.$el.children[0].value = ''
+        this.$refs.five.$el.children[0].value = ''
+        this.$refs.six.$el.children[0].value = ''
       }
       !regex.test(pin) ? failed() : success()
     }

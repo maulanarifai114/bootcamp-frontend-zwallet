@@ -5,7 +5,7 @@
     <p class="paragraph-pass align-self-start">
       You must enter your current password and then type your new password twice.
     </p>
-    <!-- Input Passowrd -->
+    <!-- Input Password -->
     <div class="wrap-pass">
       <!-- Current Password -->
       <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Current Password" @focus="focusInput" @input="inputCurrentPassword" @changeType="changeType" />
