@@ -27,6 +27,9 @@ const profile = {
     SET_PHOTO (state, payload) {
       state.photo = payload
     },
+    SET_PHONE (state, payload) {
+      state.phone = payload
+    },
     REMOVE_PROFILE (state) {
       state.id = ''
       state.photo = ''

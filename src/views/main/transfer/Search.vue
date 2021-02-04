@@ -2,11 +2,11 @@
   <div class="search-box">
     <!-- Title History -->
     <h3 class="title-search">Search Receiver</h3>
-    <div class="search d-flex w-100">
+    <div class="search d-flex w-100" :class="classes">
       <div>
         <img src="../../../assets/img/home/search.svg" alt="icon">
       </div>
-      <input ref="receiver" type="text" class="w-100" placeholder="Search receiver here">
+      <input @focus="changeClass" @blur="changeClass" ref="receiver" type="text" class="w-100" placeholder="Search receiver here">
     </div>
     <!-- Start Loop -->
     <div class="receiver w-100 d-flex" v-for="(item, index) in data" :key="index" @click="getReceiver(item)">
@@ -32,6 +32,7 @@ export default {
   data () {
     return {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+      classes: '',
       data: [
         {
           id: '2',
@@ -68,6 +69,11 @@ export default {
     getReceiver (item) {
       this.receiver(item)
       this.$router.push('/main/transfer')
+    },
+    changeClass () {
+      this.classes === ''
+        ? this.classes = 'search-focused'
+        : this.classes = ''
     }
   }
 }
@@ -117,6 +123,11 @@ export default {
   input::placeholder {
     color: rgba(58, 61, 66, 0.4);
   }
+}
+
+.search-focused {
+  background-color: rgba(58, 61, 66, 0)!important;
+  box-shadow: 0 0 0 3px rgba(99, 121, 244, 0.5);
 }
 
 .receiver {

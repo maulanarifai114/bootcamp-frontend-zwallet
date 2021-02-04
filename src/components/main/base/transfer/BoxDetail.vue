@@ -6,6 +6,7 @@
       <h2 class="value-detail" v-else-if="type === 'amount'">Rp{{amountbalance}}</h2>
     </div>
     <img class="icon" v-if="icon === 'icon'" src="../../../../assets/img/home/arrow-active.svg" height="35" alt="icon">
+    <img v-if="icon === 'edit'" src="../../../../assets/img/home/edit.svg" height="35" alt="icon">
   </div>
 </template>
 
