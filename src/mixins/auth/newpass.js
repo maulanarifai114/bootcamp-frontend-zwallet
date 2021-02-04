@@ -10,8 +10,6 @@ const newpass = {
   methods: {
     reset () {
       if (this.password !== this.newpassword) {
-        const password = this.password
-        console.log(password)
         Swal.fire('Failed', 'Passwords Are Not Same!', 'error')
         this.message = 'Passwords Are Not Same!'
       } else {

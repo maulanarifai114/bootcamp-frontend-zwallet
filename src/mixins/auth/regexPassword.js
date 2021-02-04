@@ -9,6 +9,10 @@ export default {
       isPassword6: 0,
       isPassword7: 0,
       isPassword8: 0,
+      isPassword9: 0,
+      isPassword10: 0,
+      isPassword11: 0,
+      isPassword12: 0,
       validatePassword1: 'One lowercase letter required',
       validatePassword2: 'One uppercase letter required',
       validatePassword3: '8 characters minimum',
@@ -29,6 +33,10 @@ export default {
       !regexUpper.test(this.newpassword) && !this.newpassword.length < 1 ? this.isPassword6 = 1 : this.isPassword6 = 0
       !eightChar.test(this.newpassword) && !this.newpassword.length < 1 ? this.isPassword7 = 1 : this.isPassword7 = 0
       !number.test(this.newpassword) && !this.newpassword.length < 1 ? this.isPassword8 = 1 : this.isPassword8 = 0
+      !regexLower.test(this.currentpassword) && !this.currentpassword.length < 1 ? this.isPassword9 = 1 : this.isPassword9 = 0
+      !regexUpper.test(this.currentpassword) && !this.currentpassword.length < 1 ? this.isPassword10 = 1 : this.isPassword10 = 0
+      !eightChar.test(this.currentpassword) && !this.currentpassword.length < 1 ? this.isPassword11 = 1 : this.isPassword11 = 0
+      !number.test(this.currentpassword) && !this.currentpassword.length < 1 ? this.isPassword12 = 1 : this.isPassword12 = 0
     }
   }
 }

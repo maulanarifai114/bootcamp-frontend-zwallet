@@ -3,6 +3,7 @@ export default {
     return {
       username: '',
       email: '',
+      currentpassword: '',
       password: '',
       newpassword: ''
     }
@@ -14,6 +15,10 @@ export default {
     inputEmail (e) {
       this.email = e
       this.checkEmail()
+    },
+    inputCurrentPassword (e) {
+      this.currentpassword = e
+      this.checkPassword()
     },
     inputPassword (e) {
       this.password = e
