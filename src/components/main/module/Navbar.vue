@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="wrap-contact d-flex flex-column align-items-start">
-          <h4>{{`${firstName} ${lastName}`}}</h4>
+          <h4>{{firstName}}</h4>
           <h6>{{phone}}</h6>
         </div>
         <!-- <img class="bell" src="../../../assets/img/home/bell.svg" alt="bell"> -->
@@ -40,7 +40,6 @@ export default {
     ...mapGetters({
       photo: 'profile/getPhoto',
       firstName: 'profile/getFirstName',
-      lastName: 'profile/getLastName',
       phone: 'profile/getPhone'
     })
   }
