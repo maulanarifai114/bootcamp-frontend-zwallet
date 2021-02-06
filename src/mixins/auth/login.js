@@ -34,8 +34,6 @@ export default {
             const token = res.data.result.token
             const id = res.data.result.id
             const result = res.data.result
-            console.log(token)
-            console.log(result)
             const data = {
               id: result.id,
               photo: result.photo,
