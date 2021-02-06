@@ -32,13 +32,13 @@ export default {
       meta: { requiresVisitor: true }
     },
     {
-      path: 'createnewpass/:token',
+      path: 'createnewpass/:token/:id',
       name: 'CreateNewPass',
       component: CreateNewPass,
       meta: { requiresVisitor: true }
     },
     {
-      path: 'createpin/:token',
+      path: 'createpin/:token/:id',
       name: 'CreatePin',
       component: CreatePin,
       meta: { requiresVisitor: true }

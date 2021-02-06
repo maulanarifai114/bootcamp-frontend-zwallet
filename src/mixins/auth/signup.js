@@ -19,8 +19,26 @@ const signup = {
       } else {
         const editfirstName = this.firstName
         const editlastName = this.lastName
-        const firstName = editfirstName.toLowerCase()[0].toUpperCase() + editfirstName.toLowerCase().slice(1)
-        const lastName = editlastName.toLowerCase()[0].toUpperCase() + editlastName.toLowerCase().slice(1)
+        let firstName = ''
+        let lastName = ''
+        if (editfirstName.includes(' ')) {
+          const array = []
+          editfirstName.split(' ').forEach((item) => {
+            array.push(item.toLowerCase()[0].toUpperCase() + item.toLowerCase().slice(1))
+          })
+          firstName = array.join(' ')
+        } else {
+          firstName = editfirstName.toLowerCase()[0].toUpperCase() + editfirstName.toLowerCase().slice(1)
+        }
+        if (editlastName.includes(' ')) {
+          const array = []
+          editlastName.split(' ').forEach((item) => {
+            array.push(item.toLowerCase()[0].toUpperCase() + item.toLowerCase().slice(1))
+          })
+          lastName = array.join(' ')
+        } else {
+          lastName = editlastName.toLowerCase()[0].toUpperCase() + editlastName.toLowerCase().slice(1)
+        }
         const email = this.email
         const password = this.password
         const data = {

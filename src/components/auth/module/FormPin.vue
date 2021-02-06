@@ -21,6 +21,9 @@
       <BtnAuth :isLoading="isLoading" ref="button" title="Confirm" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
       <div class="mb-50"></div>
     </form>
+    <div v-if="isLoadingActivate === 1" class="loading position-fixed d-flex justify-content-center align-items-center">
+      <Loading1 :isLoading="isLoadingActivate"/>
+    </div>
   </div>
 </template>
 
@@ -29,18 +32,55 @@ import InputPin from '@/components/auth/base/InputPin'
 import BtnAuth from '@/components/auth/base/BtnAuth'
 import pin from '@/mixins/auth/pin'
 import loading from '@/mixins/auth/loading'
+import Loading1 from '@/components/loading/Loading1'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'FormPin',
   components: {
     InputPin,
-    BtnAuth
+    BtnAuth,
+    Loading1
   },
-  mixins: [pin, loading]
+  mixins: [pin, loading],
+  data () {
+    return {
+      isLoadingActivate: 1
+    }
+  },
+  methods: {
+    verifyAccount () {
+      const token = this.$route.params.token
+      localStorage.setItem('temporaryToken', token)
+      const id = this.$route.params.id
+      axios.patch(`${process.env.VUE_APP_BASE_URL}/auth/activate`, { id })
+        .then((res) => {
+          this.isLoadingActivate = 0
+          Swal.fire('Success', res.data.result, 'success')
+        })
+        .catch((err) => {
+          this.isLoadingActivate = 0
+          Swal.fire('Failed', err.response.data.err, 'error')
+          this.$router.push('/auth/signup')
+        })
+    }
+  },
+  mounted () {
+    this.verifyAccount()
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../../assets/css/auth/formauth.css';
+
+.loading {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
 </style>
