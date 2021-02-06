@@ -3,7 +3,7 @@
     <!-- Form -->
     <form @submit.prevent="reset">
       <!-- Password -->
-      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Create new password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
+      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Create your new password" @focus="focusInput" @input="inputPassword" @changeType="changeType" />
       <div class="mb-70 w-100">
         <div class="mb-8"></div>
         <p class="error-z-c mb-2" v-if="isPassword1 === 1">{{validatePassword1}}</p>
@@ -12,7 +12,7 @@
         <p class="error-z-c mb-2" v-if="isPassword4 === 1">{{validatePassword4}}</p>
       </div>
       <!-- Password Two -->
-      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Create new password" @focus="focusInput" @input="inputNewPassword" @changeType="changeType" />
+      <InputPassAuth :class="this.class" :icon="this.iconPassword" :eye="this.iconEye" :type="type" placeholder="Repeat your new password" @focus="focusInput" @input="inputNewPassword" @changeType="changeType" />
       <div class="mb-8"></div>
       <p class="error-z-c mb-2" v-if="isPassword5 === 1">{{validatePassword1}}</p>
       <p class="error-z-c mb-2" v-if="isPassword6 === 1">{{validatePassword2}}</p>
@@ -45,7 +45,15 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [newpass, regexPassword, changeColor, inputValue, loading]
+  mixins: [newpass, regexPassword, changeColor, inputValue, loading],
+  methods: {
+    putTokenAndId () {
+      localStorage.setItem('temporaryToken', this.$route.params.token)
+    }
+  },
+  mounted () {
+    this.putTokenAndId()
+  }
 }
 </script>
 
