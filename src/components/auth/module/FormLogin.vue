@@ -27,7 +27,7 @@
         <h6 class="invalid" v-if="this.message === 'Password Invalid!'">Password Invalid!</h6>
       </div>
       <!-- Button Login -->
-      <BtnAuth title="Login" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth title="Login" :isLoading="isLoading" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </form>
   </div>
 </template>
@@ -43,6 +43,7 @@ import regexPassword from '@/mixins/auth/regexPassword'
 import regexEmail from '@/mixins/auth/regexEmail'
 import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
+import loading from '@/mixins/auth/loading'
 
 export default {
   name: 'FormLogin',
@@ -51,7 +52,7 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [login, regexPassword, regexEmail, changeColor, inputValue]
+  mixins: [login, regexPassword, regexEmail, changeColor, inputValue, loading]
 }
 </script>
 

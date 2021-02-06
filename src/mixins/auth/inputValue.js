@@ -1,7 +1,8 @@
 export default {
   data () {
     return {
-      username: '',
+      firstName: '',
+      lastName: '',
       email: '',
       currentpassword: '',
       password: '',
@@ -9,8 +10,11 @@ export default {
     }
   },
   methods: {
-    inputUsername (e) {
-      this.username = e
+    inputFirstName (e) {
+      this.firstName = e
+    },
+    inputLastName (e) {
+      this.lastName = e
     },
     inputEmail (e) {
       this.email = e

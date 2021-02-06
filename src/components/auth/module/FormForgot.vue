@@ -13,7 +13,7 @@
         </div>
       </div>
       <!-- Button Confirm -->
-      <BtnAuth title="Confirm" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth title="Confirm" :isLoading="isLoading" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </form>
   </div>
 </template>
@@ -27,6 +27,7 @@ import forgot from '@/mixins/auth/forgot'
 import regexEmail from '@/mixins/auth/regexEmail'
 import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
+import loading from '@/mixins/auth/loading'
 
 export default {
   name: 'FormForgot',
@@ -34,7 +35,7 @@ export default {
     InputTextAuth,
     BtnAuth
   },
-  mixins: [forgot, regexEmail, changeColor, inputValue]
+  mixins: [forgot, regexEmail, changeColor, inputValue, loading]
 }
 </script>
 

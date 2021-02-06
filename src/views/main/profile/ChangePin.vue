@@ -25,8 +25,8 @@
         <InputPin ref="six" id="pinSix" :class="this.class" type="text" @focus="focusInput" @input="inputPinSix"/>
       </div>
       <div class="mb-70"></div>
-      <BtnAuth ref="button" v-if="displayNext === 0" @click="checkPin" title="Continue" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
-      <BtnAuth ref="button2" v-else @click="changePin" title="Change PIN" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth :isLoading="isLoading" ref="button" v-if="displayNext === 0" @click="checkPin" title="Continue" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth :isLoading="isLoading" ref="button2" v-else @click="changePin" title="Change PIN" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@
 import InputPin from '@/components/auth/base/InputPin'
 import BtnAuth from '@/components/auth/base/BtnAuth'
 import pin from '@/mixins/auth/pin'
+import loading from '@/mixins/auth/loading'
 
 export default {
   title: 'Change Pin',
@@ -43,7 +44,7 @@ export default {
     InputPin,
     BtnAuth
   },
-  mixins: [pin]
+  mixins: [pin, loading]
 }
 </script>
 

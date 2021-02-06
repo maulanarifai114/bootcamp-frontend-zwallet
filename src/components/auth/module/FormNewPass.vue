@@ -23,7 +23,7 @@
         <h6 class="invalid" v-if="this.message === 'Passwords Are Not Same!'">Passwords Are Not Same!</h6>
       </div>
       <!-- Button New Pass -->
-      <BtnAuth title="Reset Password" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth :isLoading="isLoading" title="Reset Password" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </form>
   </div>
 </template>
@@ -37,6 +37,7 @@ import newpass from '@/mixins/auth/newpass'
 import regexPassword from '@/mixins/auth/regexPassword'
 import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
+import loading from '@/mixins/auth/loading'
 
 export default {
   name: 'FormNewPass',
@@ -44,7 +45,7 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [newpass, regexPassword, changeColor, inputValue]
+  mixins: [newpass, regexPassword, changeColor, inputValue, loading]
 }
 </script>
 

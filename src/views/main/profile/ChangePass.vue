@@ -35,7 +35,7 @@
         <p class="error-z-c mb-2" v-if="isPassword8 === 1">{{validatePassword4}}</p>
       </div>
       <!-- Button New Pass -->
-      <BtnAuth @click="changeNewPassword" title="Change Password" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth :isLoading="isLoading" @click="changeNewPassword" title="Change Password" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </div>
   </div>
 </template>
@@ -47,6 +47,7 @@ import regexPassword from '@/mixins/auth/regexPassword'
 import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
 import Swal from 'sweetalert2'
+import loading from '@/mixins/auth/loading'
 
 export default {
   title: 'Change Password',
@@ -55,7 +56,7 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [regexPassword, changeColor, inputValue],
+  mixins: [regexPassword, changeColor, inputValue, loading],
   methods: {
     changeNewPassword () {
       if (this.password === '' || this.newpassword === '' || this.currentpassword === '') {

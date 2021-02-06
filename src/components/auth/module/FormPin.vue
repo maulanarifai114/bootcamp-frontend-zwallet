@@ -18,7 +18,7 @@
       </div>
       <div class="mb-70 w-100"></div>
       <!-- Button Sign Up -->
-      <BtnAuth ref="button" title="Confirm" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth :isLoading="isLoading" ref="button" title="Confirm" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
       <div class="mb-50"></div>
     </form>
   </div>
@@ -28,6 +28,7 @@
 import InputPin from '@/components/auth/base/InputPin'
 import BtnAuth from '@/components/auth/base/BtnAuth'
 import pin from '@/mixins/auth/pin'
+import loading from '@/mixins/auth/loading'
 
 export default {
   name: 'FormPin',
@@ -35,7 +36,7 @@ export default {
     InputPin,
     BtnAuth
   },
-  mixins: [pin]
+  mixins: [pin, loading]
 }
 </script>
 

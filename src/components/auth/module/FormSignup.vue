@@ -2,8 +2,11 @@
   <div>
     <!-- Form -->
     <form @submit.prevent="signup">
-      <!-- Username -->
-      <InputTextAuth id="username" :class="this.class" :icon="this.iconUsername" type="text" placeholder="Enter your username" @focus="focusInput" @input="inputUsername"/>
+      <!-- First Name -->
+      <InputTextAuth id="firstname" :class="this.class" :icon="this.iconUsername" type="text" placeholder="Enter your first name" @focus="focusInput" @input="inputFirstName"/>
+      <div class="mb-70 w-100"></div>
+      <!-- Last Name -->
+      <InputTextAuth id="lastname" :class="this.class" :icon="this.iconUsername" type="text" placeholder="Enter your last name" @focus="focusInput" @input="inputLastName"/>
       <div class="mb-70 w-100"></div>
       <!-- Email -->
       <InputTextAuth id="email" :class="this.class" :icon="this.iconEmail" type="email" placeholder="Enter your e-mail" @focus="focusInput" @input="inputEmail"/>
@@ -25,7 +28,7 @@
         <h6 class="invalid" v-if="this.message === 'Email Has Already Registered!'">Email Has Already Registered!</h6>
       </div>
       <!-- Button Sign Up -->
-      <BtnAuth title="Sign Up" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
+      <BtnAuth title="Sign Up" :isLoading="isLoading" :class="this.class === 'input-text-active' || this.class === 'input-text-error' ? 'primary-z primary-z-c':'deny-z deny-z-c'" />
     </form>
   </div>
 </template>
@@ -41,6 +44,7 @@ import regexPassword from '@/mixins/auth/regexPassword'
 import regexEmail from '@/mixins/auth/regexEmail'
 import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
+import loading from '@/mixins/auth/loading'
 
 export default {
   name: 'FormSignup',
@@ -49,7 +53,7 @@ export default {
     InputPassAuth,
     BtnAuth
   },
-  mixins: [signup, regexPassword, regexEmail, changeColor, inputValue]
+  mixins: [signup, regexPassword, regexEmail, changeColor, inputValue, loading]
 }
 </script>
 
