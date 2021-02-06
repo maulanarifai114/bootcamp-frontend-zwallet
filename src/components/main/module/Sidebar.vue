@@ -73,6 +73,7 @@ export default {
     },
     logout () {
       localStorage.removeItem('token')
+      localStorage.removeItem('id')
       Swal.fire('Success', 'Comeback anytime you want', 'success')
       this.$router.push('/auth/login').catch(() => {})
     }

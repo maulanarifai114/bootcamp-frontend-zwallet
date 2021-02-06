@@ -18,8 +18,13 @@ export default new Vuex.Store({
   actions: {
     interceptorRequest () {
       axios.interceptors.request.use(function (config) {
-        config.headers.Authorization = `Bearer ${localStorage.getItem('temporaryToken')}` || `Bearer ${localStorage.getItem('token')}`
-        return config
+        if (localStorage.getItem('token')) {
+          config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+          return config
+        } else {
+          config.headers.Authorization = `Bearer ${localStorage.getItem('temporaryToken')}`
+          return config
+        }
       }, function (error) {
         return Promise.reject(error)
       })
@@ -32,13 +37,13 @@ export default new Vuex.Store({
           if (error.response.data.err === 'Invalid Token') {
             localStorage.removeItem('token')
             localStorage.removeItem('id')
-            context.commit('REMOVE_ALL')
-            this.$router.push('/login')
+            context.commit('profile/REMOVE_PROFILE')
+            this.$router.push('/auth/login')
           } else if (error.response.data.err === 'Token Expired') {
             localStorage.removeItem('token')
             localStorage.removeItem('id')
-            context.commit('REMOVE_ALL')
-            this.$router.push('/login')
+            context.commit('profile/REMOVE_PROFILE')
+            this.$router.push('/auth/login')
           }
         }
         return Promise.reject(error)

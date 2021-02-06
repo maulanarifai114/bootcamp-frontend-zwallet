@@ -1,4 +1,5 @@
 import parsePhoneNumber from 'libphonenumber-js'
+import axios from 'axios'
 
 const profile = {
   namespaced: true,
@@ -42,18 +43,23 @@ const profile = {
   },
   actions: {
     getProfile (context) {
-      setTimeout(() => {
-        const payload = {
-          id: '1',
-          photo: 'https://images.unsplash.com/photo-1609863554781-35c7867dedb7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          firstName: 'Elly',
-          lastName: 'Hoe',
-          balance: 20000000,
-          phone: '+6284337927659',
-          email: 'ellyhoe30@gmail.com'
-        }
-        context.commit('SET_PROFILE', payload)
-      }, 2000)
+      axios.get(`${process.env.VUE_APP_BASE_URL}/user?id=${localStorage.getItem('id')}`)
+        .then((res) => {
+          const result = res.data.result
+          const payload = {
+            id: result.id,
+            photo: result.photo,
+            firstName: result.firstName,
+            lastName: result.lastName,
+            balance: result.balance,
+            phone: result.phone,
+            email: result.email
+          }
+          context.commit('SET_PROFILE', payload)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   getters: {

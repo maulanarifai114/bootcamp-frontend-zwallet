@@ -31,12 +31,15 @@ export default {
     BottomBar
   },
   methods: {
-    ...mapActions({
-      getProfile: 'profile/getProfile'
-    })
+    ...mapActions({ getProfile: 'profile/getProfile' }),
+    getProfileZ () {
+      if (this.$store.getters['profile/getId'] === '') {
+        this.getProfile()
+      }
+    }
   },
   mounted () {
-    this.getProfile()
+    this.getProfileZ()
   }
 }
 </script>
