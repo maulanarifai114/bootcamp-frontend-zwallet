@@ -47,7 +47,7 @@ export default {
           senderId: '2',
           receiverId: '1',
           name: 'Lisa Margarita',
-          photo: '',
+          photo: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=772&q=80',
           date: '2021-01-11T00:00:00',
           amount: 50000
         },

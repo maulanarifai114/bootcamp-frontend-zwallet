@@ -2,12 +2,12 @@
   <div class="search-box">
     <!-- Title History -->
     <h3 class="title-search">Search Receiver</h3>
-    <div class="search d-flex w-100" :class="classes">
+    <label for="search" class="search d-flex w-100" :class="classes">
       <div>
         <img src="../../../assets/img/home/search.svg" alt="icon">
       </div>
-      <input @focus="changeClass" @blur="changeClass" ref="receiver" type="text" class="w-100" placeholder="Search receiver here">
-    </div>
+      <input v-model="search" @focus="changeClass" @blur="changeClass" @input="searching" id="search" type="text" class="w-100" placeholder="Search receiver here">
+    </label>
     <!-- Start Loop -->
     <div class="receiver w-100 d-flex" v-for="(item, index) in data" :key="index" @click="getReceiver(item)">
       <figure>
@@ -25,6 +25,8 @@
 <script>
 import parsePhoneNumber from 'libphonenumber-js'
 import { mapMutations } from 'vuex'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   title: 'Search',
@@ -33,32 +35,9 @@ export default {
     return {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
       classes: '',
-      data: [
-        {
-          id: '2',
-          name: 'Lisa Margarita',
-          photo: '',
-          phone: '+6283991026758'
-        },
-        {
-          id: '3',
-          name: 'John Doe',
-          photo: 'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          phone: '+6289548274953'
-        },
-        {
-          id: '4',
-          name: 'Sherman Suzyyyy',
-          photo: 'https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          phone: '+6285771836849'
-        },
-        {
-          id: '5',
-          name: 'Brozan Billy',
-          photo: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80',
-          phone: '+6285342513759'
-        }
-      ]
+      data: [],
+      search: '',
+      bottom: false
     }
   },
   methods: {
@@ -74,6 +53,63 @@ export default {
       this.classes === ''
         ? this.classes = 'search-focused'
         : this.classes = ''
+    },
+    searching (e) {
+      if (this.search === '') {
+        this.getAllUser()
+      } else {
+        axios.get(`${process.env.VUE_APP_BASE_URL}/user/search?keyword=${e.target.value}`)
+          .then((res) => {
+            this.data = res.data.result
+          })
+          .catch((err) => {
+            Swal.fire('Failed', err.response.data.err, 'error')
+          })
+      }
+    },
+    getAllUser () {
+      axios.get(`${process.env.VUE_APP_BASE_URL}/user/alluser`)
+        .then((res) => {
+          this.data = res.data.result
+        })
+        .catch((err) => {
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
+    },
+    getAllUserLimit () {
+      const last = this.data.length - 1
+      axios.get(`${process.env.VUE_APP_BASE_URL}/user/alluserlimit?date=${this.data[last].date}`)
+        .then((res) => {
+          res.data.result.forEach((value) => {
+            this.data.push(value)
+          })
+        })
+        .catch((err) => {
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
+    },
+    updateUser () {
+      this.search === '' ? this.getAllUser() : this.searching()
+    },
+    bottomVisible () {
+      const scrollY = window.scrollY
+      const visible = document.documentElement.clientHeight
+      const pageHeight = document.documentElement.scrollHeight
+      const bottomOfPage = visible + scrollY >= pageHeight
+      return bottomOfPage || pageHeight < visible
+    }
+  },
+  created () {
+    window.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible()
+    })
+    this.getAllUser()
+  },
+  watch: {
+    bottom (isBottom) {
+      if (isBottom === true) {
+        this.getAllUserLimit()
+      }
     }
   }
 }

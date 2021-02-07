@@ -30,7 +30,6 @@ export default {
         this.isLoading = 1
         axios.post(`${process.env.VUE_APP_BASE_URL}/auth/login`, send)
           .then((res) => {
-            console.log(res)
             const token = res.data.result.token
             const id = res.data.result.id
             const result = res.data.result
