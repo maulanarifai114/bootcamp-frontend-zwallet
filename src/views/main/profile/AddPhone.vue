@@ -15,8 +15,9 @@
         <input max="13" ref="inputNumber" @change="resetPhone" @focus="changeClass" @keypress="checkNumber" @keyup="addNumber" type="number" class="w-100" placeholder="Enter your phone number" required>
       </div>
       <!-- Button -->
-      <button @focus="focusedBtn" @click.prevent="editNumber" class="button-addphone d-flex justify-content-center" :class="focused === 1 ? 'button-active' : 'button-inactive'">
-        Edit Phone Number
+      <button @focus="focusedBtn" @click="editNumber" class="button-addphone d-flex justify-content-center align-items-center" :class="focused === 1 ? 'button-active' : 'button-inactive'">
+        <div v-if="isLoading === 0">Edit Phone Number</div>
+        <Loading2 :isLoading="isLoading"/>
       </button>
     </div>
   </div>
@@ -26,14 +27,20 @@
 import { mapMutations } from 'vuex'
 import Swal from 'sweetalert2'
 import parsePhoneNumber from 'libphonenumber-js'
+import axios from 'axios'
+import Loading2 from '@/components/loading/Loading2'
 
 export default {
   title: 'Add Phone',
   name: 'AddPhone',
+  components: {
+    Loading2
+  },
   data () {
     return {
       focused: 0,
-      phone: ''
+      phone: '',
+      isLoading: 0
     }
   },
   methods: {
@@ -66,11 +73,20 @@ export default {
       }
     },
     editNumber () {
+      this.isLoading = 1
       const phone = `+62${this.phone}`
       const parsePhone = parsePhoneNumber(phone).formatInternational()
-      this.setPhone(phone)
-      Swal.fire('Succes', `Your phone number now is ${parsePhone}`, 'success')
-      this.$router.push('/main/managephone')
+      axios.patch(`${process.env.VUE_APP_BASE_URL}/user/phone`, { phone, id: this.$store.getters['profile/getId'] })
+        .then(() => {
+          this.isLoading = 0
+          this.setPhone(phone)
+          Swal.fire('Success', `Your phone number now is ${parsePhone}`, 'success')
+          this.$router.push('/main/managephone')
+        })
+        .catch((err) => {
+          this.isLoading = 0
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
     }
   }
 }
@@ -107,7 +123,7 @@ input::placeholder {
   box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
   border-radius: 12px;
   width: 431px;
-  padding: 16px 0;
+  height: 60px;
 }
 
 .button-addphone:hover {
