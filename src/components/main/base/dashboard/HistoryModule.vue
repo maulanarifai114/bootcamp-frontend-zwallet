@@ -29,46 +29,15 @@
 <script>
 import moment from 'moment'
 import { mapGetters } from 'vuex'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'HistoryModule',
   data () {
     return {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
-      data: [
-        {
-          senderId: '2',
-          receiverId: '1',
-          name: 'Lisa Margarita',
-          photo: '',
-          date: '2021-01-11T00:00:00',
-          amount: 50000
-        },
-        {
-          senderId: '1',
-          receiverId: '3',
-          name: 'John Doe',
-          photo: 'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          date: '2021-01-08T00:00:00',
-          amount: 30000
-        },
-        {
-          senderId: '4',
-          receiverId: '1',
-          name: 'Sherman Suzy',
-          photo: 'https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          date: '2021-01-05T00:00:00',
-          amount: 225000
-        },
-        {
-          senderId: '1',
-          receiverId: '5',
-          name: 'Brozan Billy',
-          photo: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=344&q=80',
-          date: '2021-01-02T00:00:00',
-          amount: 40000
-        }
-      ]
+      data: []
     }
   },
   methods: {
@@ -77,10 +46,28 @@ export default {
     },
     getDay (day) {
       return moment(day).format('ll')
+    },
+    getAllHistory () {
+      axios.get(`${process.env.VUE_APP_BASE_URL}/history?id=${this.$store.getters['profile/getId']}&sort=new`)
+        .then((res) => {
+          const array = res.data.result
+          this.data = array.slice(0, 4)
+        })
+        .catch((err) => {
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
     }
+  },
+  mounted () {
+    this.getAllHistory()
   },
   computed: {
     ...mapGetters({ currentId: 'profile/getId' })
+  },
+  watch: {
+    currentId (newValue) {
+      newValue !== '' ? this.getAllHistory() : this.getAllHistory()
+    }
   }
 }
 </script>

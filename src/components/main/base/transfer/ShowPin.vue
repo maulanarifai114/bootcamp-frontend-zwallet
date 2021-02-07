@@ -150,7 +150,7 @@ export default {
   width: 100%;
   height: 100%;
   background: rgba(58, 61, 66, 0.5);
-  z-index: 1001;
+  z-index: 2001;
 }
 
 .title-pin {
