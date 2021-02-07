@@ -99,7 +99,6 @@ export default {
         if (result.isConfirmed) {
           axios.delete(`${process.env.VUE_APP_BASE_URL}/history`, { data: { id: itemId } })
             .then((res) => {
-              console.log(res.data)
               Swal.fire('Deleted!', 'History has been deleted.', 'success')
               this.getAllHistory()
             })

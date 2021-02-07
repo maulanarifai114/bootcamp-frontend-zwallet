@@ -61,7 +61,6 @@ export default {
     ...mapMutations({ setPhoto: 'profile/SET_PHOTO' }),
     changeImage (e) {
       this.isLoading = 1
-      console.log(e.target.files[0])
       const type = e.target.files[0].type
       const size = e.target.files[0].size
       const byte = 1024 * 1024 * 1
