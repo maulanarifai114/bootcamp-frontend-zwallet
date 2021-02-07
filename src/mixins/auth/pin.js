@@ -112,13 +112,23 @@ const signup = {
         this.$refs.six.$el.children[0].value = ''
       }
       const success = () => {
-        Swal.fire('Success', 'You have been change your pin', 'success')
-        axios.patch(`${process.env.VUE_APP_BASE_URL}/user/pin`)
-        this.$router.push('/main/profile')
+        const data = {
+          pin,
+          id: this.$store.getters['profile/getId']
+        }
+        axios.patch(`${process.env.VUE_APP_BASE_URL}/user/pin`, data)
+          .then(() => {
+            Swal.fire('Success', 'You have been change your pin', 'success')
+            this.$router.push('/main/profile')
+          })
+          .catch((err) => {
+            Swal.fire('Failed', err.response.data.err, 'error')
+          })
       }
       !regex.test(pin) ? failed() : success()
     },
     checkPin () {
+      this.isLoading = 1
       const regex = /^[0-9]+$/
       const pinBox = this.pinBox
       const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
@@ -140,14 +150,28 @@ const signup = {
         this.$refs.six.$el.children[0].value = ''
       }
       const success = () => {
-        Swal.fire('Now replace your pin with a new one', '', 'success')
-        this.displayNext = 1
-        this.$refs.one.$el.children[0].value = ''
-        this.$refs.two.$el.children[0].value = ''
-        this.$refs.three.$el.children[0].value = ''
-        this.$refs.four.$el.children[0].value = ''
-        this.$refs.five.$el.children[0].value = ''
-        this.$refs.six.$el.children[0].value = ''
+        axios.get(`${process.env.VUE_APP_BASE_URL}/user/checkpin?pin=${pin}&id=${this.$store.getters['profile/getId']}`)
+          .then(() => {
+            this.isLoading = 0
+            Swal.fire('Now replace your pin with a new one', '', 'success')
+            this.displayNext = 1
+            this.$refs.one.$el.children[0].value = ''
+            this.$refs.two.$el.children[0].value = ''
+            this.$refs.three.$el.children[0].value = ''
+            this.$refs.four.$el.children[0].value = ''
+            this.$refs.five.$el.children[0].value = ''
+            this.$refs.six.$el.children[0].value = ''
+          })
+          .catch((err) => {
+            this.isLoading = 0
+            Swal.fire('Failed', err.response.data.result, 'error')
+            this.$refs.one.$el.children[0].value = ''
+            this.$refs.two.$el.children[0].value = ''
+            this.$refs.three.$el.children[0].value = ''
+            this.$refs.four.$el.children[0].value = ''
+            this.$refs.five.$el.children[0].value = ''
+            this.$refs.six.$el.children[0].value = ''
+          })
       }
       !regex.test(pin) ? failed() : success()
     }
