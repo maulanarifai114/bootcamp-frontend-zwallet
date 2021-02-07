@@ -48,6 +48,7 @@ import changeColor from '@/mixins/auth/changeColor'
 import inputValue from '@/mixins/auth/inputValue'
 import Swal from 'sweetalert2'
 import loading from '@/mixins/auth/loading'
+import axios from 'axios'
 
 export default {
   title: 'Change Password',
@@ -65,9 +66,39 @@ export default {
         Swal.fire('Same Password!', 'You have the same password at current password!', 'error')
       } else if (this.password !== this.newpassword) {
         Swal.fire('Failed', 'Passwords Are Not Same!', 'error')
+      } else if (
+        this.isPassword1 === 1 ||
+        this.isPassword2 === 1 ||
+        this.isPassword3 === 1 ||
+        this.isPassword4 === 1 ||
+        this.isPassword5 === 1 ||
+        this.isPassword6 === 1 ||
+        this.isPassword7 === 1 ||
+        this.isPassword8 === 1 ||
+        this.isPassword9 === 1 ||
+        this.isPassword10 === 1 ||
+        this.isPassword11 === 1 ||
+        this.isPassword12 === 1
+      ) {
+        Swal.fire('Failed', 'Password Does Not Qualify', 'error')
       } else {
-        Swal.fire('Success', 'You have change your password', 'success')
-        this.$router.push('/main/profile')
+        this.isLoading = 1
+        const data = {
+          currentpassword: this.currentpassword,
+          password: this.password,
+          repeatpassword: this.newpassword,
+          id: this.$store.getters['profile/getId']
+        }
+        axios.patch(`${process.env.VUE_APP_BASE_URL}/user/password`, data)
+          .then(() => {
+            this.isLoading = 0
+            Swal.fire('Success', 'You have change your password', 'success')
+            this.$router.push('/main/profile')
+          })
+          .catch((err) => {
+            this.isLoading = 0
+            Swal.fire('Failed', err.response.data.result, 'error')
+          })
       }
     }
   }
