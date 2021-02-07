@@ -2,8 +2,11 @@
   <div class="profile d-flex align-items-center flex-column">
     <!-- Change Photo -->
     <label for="photo" class="d-flex align-items-center flex-column">
-      <figure>
+      <figure class="position-relative">
         <img :src="photo === '' ? image : photo" alt="photo">
+        <div :class="isLoading === 1 ? 'loading-image':'' " class="position-absolute d-flex justify-content-center align-items-center">
+          <Loading2 :isLoading="isLoading"/>
+        </div>
       </figure>
       <div class="d-flex align-items-center">
         <img src="../../../assets/img/home/edit-2.svg" alt="icon">
@@ -39,33 +42,53 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import Swal from 'sweetalert2'
+import axios from 'axios'
+import Loading2 from '@/components/loading/Loading2'
 
 export default {
   title: 'Profile',
   name: 'Profile',
+  components: {
+    Loading2
+  },
   data () {
     return {
-      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+      isLoading: 0
     }
   },
   methods: {
     ...mapMutations({ setPhoto: 'profile/SET_PHOTO' }),
     changeImage (e) {
+      this.isLoading = 1
       console.log(e.target.files[0])
       const type = e.target.files[0].type
       const size = e.target.files[0].size
       const byte = 1024 * 1024 * 1
       if (type !== 'image/jpeg' && type !== 'image/png' && type !== 'image/jpg') {
+        this.isLoading = 0
         return Swal.fire('Failed', 'You must upload a JPEG / JPG / PNG', 'error')
       } else if (size > byte) {
+        this.isLoading = 0
         return Swal.fire('Failed', 'You must upload less than 1 MB', 'error')
       } else {
+        const data = new FormData()
         const reader = new FileReader()
-        reader.readAsDataURL(e.target.files[0])
-        reader.onload = e => {
-          this.setPhoto(e.target.result)
-        }
-        Swal.fire('Success', 'You have been change your avatar', 'success')
+        data.append('photo', e.target.files[0])
+        data.append('id', this.$store.getters['profile/getId'])
+        axios.patch(`${process.env.VUE_APP_BASE_URL}/user/photo`, data)
+          .then(() => {
+            reader.readAsDataURL(e.target.files[0])
+            reader.onload = e => {
+              this.setPhoto(e.target.result)
+            }
+            Swal.fire('Success', 'You have been change your avatar', 'success')
+            this.isLoading = 0
+          })
+          .catch((err) => {
+            Swal.fire('Failed', err.response.data.err, 'error')
+            this.isLoading = 0
+          })
       }
     },
     goPersonal () {
@@ -96,6 +119,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.loading-image {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(58, 61, 66, 0.5);
+}
 
 label {
   margin: 0 0 15px 0
