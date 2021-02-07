@@ -19,12 +19,12 @@
     <!-- Balance -->
     <BoxDetail type="amount" title="Balance Left" :amountbalance="(balance-amount).toLocaleString('id-ID')"/>
     <!-- Date & Time -->
-    <BoxDetail type="value" title="Date & Time" :value="date"/>
+    <BoxDetail type="value" title="Date & Time" :value="dateDisplay"/>
     <!-- Notes -->
     <BoxDetail type="value" title="Notes" :value="notes"/>
     <!-- Button -->
     <div class="wrap-btn d-flex justify-content-end">
-      <BtnTransfer ref="button" label="Continue" @click="showPin"/>
+      <BtnTransfer :isLoading="isLoading" ref="button" label="Continue" @click="showPin"/>
     </div>
     <!-- Pin -->
     <ShowPin :showed="show" @click="closePin" @change="closePin"/>
@@ -48,7 +48,8 @@ export default {
   data () {
     return {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
-      show: 0
+      show: 0,
+      isLoading: 0
     }
   },
   methods: {
@@ -73,7 +74,7 @@ export default {
       phone: 'confirmation/getPhone',
       amount: 'confirmation/getAmount',
       notes: 'confirmation/getNotes',
-      date: 'confirmation/getDate',
+      dateDisplay: 'confirmation/getDateDisplay',
       balance: 'profile/getBalance'
     })
   },

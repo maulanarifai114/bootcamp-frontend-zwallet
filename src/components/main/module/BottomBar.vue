@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   name: 'BottomBar',
   methods: {
@@ -52,6 +54,7 @@ export default {
     logout () {
       localStorage.removeItem('token')
       localStorage.removeItem('id')
+      Swal.fire('Success', 'Comeback anytime you want', 'success')
       this.$router.push('/auth/login')
     }
   },

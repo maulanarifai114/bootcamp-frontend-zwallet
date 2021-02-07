@@ -19,7 +19,7 @@
         <InputPin ref="six" id="pinSix" :class="this.class" @focus="focusInput" @input="inputPinSix"/>
       </div>
       <div class="d-flex justify-content-end">
-        <BtnTransfer ref="button" label="Continue" @click="confirm"/>
+        <BtnTransfer :isLoading="isLoading" ref="button" label="Continue" @click="confirm"/>
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@ import { mapMutations } from 'vuex'
 import InputPin from '@/components/auth/base/InputPin.vue'
 import BtnTransfer from './BtnTransfer'
 import Swal from 'sweetalert2'
+import axios from 'axios'
 
 export default {
   name: 'ShowPin',
@@ -40,6 +41,7 @@ export default {
   },
   data () {
     return {
+      isLoading: 0,
       pinBox: {
         pinOne: '',
         pinTwo: '',
@@ -82,11 +84,20 @@ export default {
       this.$refs.button.$el.focus()
     },
     confirm () {
+      this.isLoading = 1
       const data = {
         id: this.$store.getters['confirmation/getId'],
         name: this.$store.getters['confirmation/getName'],
         photo: this.$store.getters['confirmation/getPhoto'],
         phone: this.$store.getters['confirmation/getPhone'],
+        amount: this.$store.getters['confirmation/getAmount'],
+        notes: this.$store.getters['confirmation/getNotes'],
+        dateDisplay: this.$store.getters['confirmation/getDateDisplay']
+      }
+      const send = {
+        senderId: this.$store.getters['profile/getId'],
+        receiverId: this.$store.getters['confirmation/getId'],
+        pin: '',
         amount: this.$store.getters['confirmation/getAmount'],
         notes: this.$store.getters['confirmation/getNotes'],
         date: this.$store.getters['confirmation/getDate']
@@ -105,16 +116,23 @@ export default {
           pinSix: ''
         }
         this.setStatus(data)
-        this.setBalance(data.amount)
         Swal.fire('Failed', 'An error occurred', 'error')
         this.$router.push('/main/failed')
       }
       const success = () => {
-        // axios.post()
-        this.setStatus(data)
-        this.setBalance(data.amount)
-        Swal.fire('Success', 'You\'ve been transfer to your friend', 'success')
-        this.$router.push('/main/success')
+        send.pin = pin
+        axios.post(`${process.env.VUE_APP_BASE_URL}/transfer`, send)
+          .then(() => {
+            this.isLoading = 0
+            this.setStatus(data)
+            this.setBalance(data.amount)
+            Swal.fire('Success', 'You\'ve been transfer to your friend', 'success')
+            this.$router.push('/main/success')
+          })
+          .catch((err) => {
+            this.isLoading = 0
+            Swal.fire('Failed', err.response.data.err, 'error')
+          })
       }
       !regex.test(pin) ? failed() : success()
     }
@@ -180,6 +198,9 @@ export default {
 @media (max-width: 515px) {
   .show-pin {
     padding: 0 15px
+  }
+  .wrap-pin {
+    padding: 35px 17.5px
   }
 }
 

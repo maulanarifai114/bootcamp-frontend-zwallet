@@ -7,7 +7,7 @@
     <!-- Amount -->
     <BoxDetail type="amount" title="Amount" :amountbalance="amount.toLocaleString('id-ID')"/>
     <!-- Balance -->
-    <BoxDetail type="amount" title="Balance Left" :amountbalance="(balance-amount).toLocaleString('id-ID')"/>
+    <BoxDetail type="amount" title="Balance Left" :amountbalance="balance.toLocaleString('id-ID')"/>
     <!-- Date & Time -->
     <BoxDetail type="value" title="Date & Time" :value="date"/>
     <!-- Notes -->
@@ -15,9 +15,11 @@
     <!-- Transfer to -->
     <h3 class="title-status-to">Transfer to</h3>
     <div class="receiver w-100 d-flex">
-      <figure>
-        <img :src="photo === '' ? image : photo" alt="">
-      </figure>
+      <div>
+        <figure>
+          <img :src="photo === '' ? image : photo" alt="">
+        </figure>
+      </div>
       <div class="d-flex flex-column justify-content-center flex-fill">
         <h4 class="name">{{name}}</h4>
         <h6 class="phone">{{phone}}</h6>
@@ -25,7 +27,7 @@
     </div>
     <!-- Button -->
     <div class="wrap-btn d-flex justify-content-end">
-      <BtnTransfer ref="button" label="Back to Home" @click="goDashboard"/>
+      <BtnTransfer :isLoading="isLoading" ref="button" label="Back to Home" @click="goDashboard"/>
     </div>
   </div>
 </template>
@@ -44,12 +46,18 @@ export default {
   },
   data () {
     return {
-      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+      image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+      isLoading: 0
     }
   },
   methods: {
     goDashboard () {
       this.$router.push('/main/dashboard')
+    },
+    checkReceiver () {
+      if (this.$store.getters['status/getId'] === '') {
+        this.$router.push('/main/dashboard')
+      }
     }
   },
   computed: {
@@ -60,7 +68,7 @@ export default {
       phone: 'status/getPhone',
       amount: 'status/getAmount',
       notes: 'status/getNotes',
-      date: 'status/getDate',
+      date: 'status/getDateDisplay',
       balance: 'profile/getBalance'
     })
   }
@@ -152,6 +160,12 @@ figure {
   line-height: 22px;
   color: #7A7886;
 
+}
+
+@media (max-width: 425px) {
+  .name {
+    width: 144px;
+  }
 }
 
 @media (max-width: 375px) {

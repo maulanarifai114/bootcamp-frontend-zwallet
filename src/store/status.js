@@ -9,7 +9,7 @@ const transfer = {
     phone: '+62',
     amount: 0,
     notes: '',
-    date: ''
+    dateDisplay: ''
   }),
   mutations: {
     SET_STATUS (state, payload) {
@@ -19,7 +19,7 @@ const transfer = {
       state.phone = payload.phone
       state.amount = payload.amount
       state.notes = payload.notes
-      state.date = payload.date
+      state.dateDisplay = payload.dateDisplay
     }
   },
   getters: {
@@ -45,8 +45,8 @@ const transfer = {
     getNotes (state) {
       return state.notes
     },
-    getDate (state) {
-      return state.date
+    getDateDisplay (state) {
+      return state.dateDisplay
     }
   }
 }

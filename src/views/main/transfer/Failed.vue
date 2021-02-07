@@ -10,7 +10,7 @@
     <!-- Amount -->
     <BoxDetail type="amount" title="Amount" :amountbalance="amount.toLocaleString('id-ID')"/>
     <!-- Balance -->
-    <BoxDetail type="amount" title="Balance Left" :amountbalance="(balance-amount).toLocaleString('id-ID')"/>
+    <BoxDetail type="amount" title="Balance Left" :amountbalance="balance.toLocaleString('id-ID')"/>
     <!-- Date & Time -->
     <BoxDetail type="value" title="Date & Time" :value="date"/>
     <!-- Notes -->
@@ -63,7 +63,7 @@ export default {
       phone: 'status/getPhone',
       amount: 'status/getAmount',
       notes: 'status/getNotes',
-      date: 'status/getDate',
+      date: 'status/getDateDisplay',
       balance: 'profile/getBalance'
     })
   }
@@ -166,7 +166,6 @@ figure {
   font-size: 16px;
   line-height: 22px;
   color: #7A7886;
-
 }
 
 @media (max-width: 767px) {
@@ -174,6 +173,13 @@ figure {
     width: 100%;
   }
 }
+
+@media (max-width: 425px) {
+  .name {
+    width: 144px;
+  }
+}
+
 @media (max-width: 375px) {
   .status {
     padding: 30px 15px

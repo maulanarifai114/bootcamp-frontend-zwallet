@@ -30,7 +30,7 @@
     </div>
     <!-- Button -->
     <div class="d-flex justify-content-end">
-      <BtnTransfer label="Continue" @click="continueNext"/>
+      <BtnTransfer :isLoading="isLoading" label="Continue" @click="continueNext"/>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Swal from 'sweetalert2'
 import moment from 'moment'
+import axios from 'axios'
 import BtnTransfer from '@/components/main/base/transfer/BtnTransfer.vue'
 
 export default {
@@ -52,7 +53,8 @@ export default {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
       money: '',
       notes: '',
-      focused: 0
+      focused: 0,
+      isLoading: 0
     }
   },
   methods: {
@@ -73,24 +75,59 @@ export default {
         phone: this.$store.getters['transfer/getPhone'],
         amount: parseInt(this.money),
         notes: this.notes,
-        date: ''
+        date: '',
+        dateDisplay: ''
       }
       if (this.money === '') {
         Swal.fire('Failed', 'You must input a number', 'error')
       } else if (this.notes === '') {
+        this.isLoading = 1
         const amount = parseInt(this.money).toLocaleString('id-ID')
-        const date = moment().locale('en').format('ll')
+        const dateDisplay = moment().locale('en').format('ll')
         const time = moment().locale('id').format('LT')
+        const date = moment().format().split('+07:00')
         data.notes = `Transfer Rp${amount} to ${this.$store.getters['transfer/getName']}`
-        data.date = `${date} - ${time}`
-        this.setConfirmation(data)
-        this.$router.push('/main/confirmation')
+        data.dateDisplay = `${dateDisplay} - ${time}`
+        data.date = date[0]
+        const url = `${process.env.VUE_APP_BASE_URL}/transfer/balance?id=${this.$store.getters['profile/getId']}&amount=${this.money}`
+        axios.get(url)
+          .then((res) => {
+            if (res.data.result === 'The Balance Is Not Sufficient') {
+              this.isLoading = 0
+              Swal.fire('Failed', res.data.result, 'error')
+            } else {
+              this.isLoading = 0
+              this.setConfirmation(data)
+              this.$router.push('/main/confirmation')
+            }
+          })
+          .catch((err) => {
+            console.log(err.response.data)
+            Swal.fire('Failed', err.response.data.err, 'error')
+          })
       } else {
-        const date = moment().locale('en').format('ll')
+        this.isLoading = 1
+        const dateDisplay = moment().locale('en').format('ll')
         const time = moment().locale('id').format('LT')
-        data.date = `${date} - ${time}`
-        this.setConfirmation(data)
-        this.$router.push('/main/confirmation')
+        const date = moment().format().split('+07:00')
+        data.dateDisplay = `${dateDisplay} - ${time}`
+        data.date = date[0]
+        const url = `${process.env.VUE_APP_BASE_URL}/transfer/balance?id=${this.$store.getters['profile/getId']}&amount=${this.money}`
+        axios.get(url)
+          .then((res) => {
+            if (res.data.result === 'The Balance Is Not Sufficient') {
+              this.isLoading = 0
+              Swal.fire('Failed', res.data.result, 'error')
+            } else {
+              this.isLoading = 0
+              this.setConfirmation(data)
+              this.$router.push('/main/confirmation')
+            }
+          })
+          .catch((err) => {
+            console.log(err.response.data)
+            Swal.fire('Failed', err.response.data.err, 'error')
+          })
       }
     }
   },

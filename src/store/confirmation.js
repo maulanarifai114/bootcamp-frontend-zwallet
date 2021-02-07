@@ -9,7 +9,8 @@ const transfer = {
     phone: '+62',
     amount: 0,
     notes: '',
-    date: ''
+    date: '',
+    dateDisplay: ''
   }),
   mutations: {
     SET_CONFIRMATION (state, payload) {
@@ -20,6 +21,7 @@ const transfer = {
       state.amount = payload.amount
       state.notes = payload.notes
       state.date = payload.date
+      state.dateDisplay = payload.dateDisplay
     },
     REMOVE_CONFIRMATION (state) {
       state.id = ''
@@ -29,6 +31,7 @@ const transfer = {
       state.amount = 0
       state.notes = ''
       state.date = ''
+      state.dateDisplay = ''
     }
   },
   getters: {
@@ -56,6 +59,9 @@ const transfer = {
     },
     getDate (state) {
       return state.date
+    },
+    getDateDisplay (state) {
+      return state.dateDisplay
     }
   }
 }
