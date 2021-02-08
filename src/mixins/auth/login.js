@@ -47,8 +47,13 @@ export default {
             this.setProfile(data)
             if (result.firstTime === 'false') {
               this.isLoading = 0
-              Swal.fire('Success', 'Let\'s Fill Your Wallet', 'success')
-              this.$router.push('/main/dashboard')
+              if (result.id !== process.env.VUE_APP_ADMIN) {
+                Swal.fire('Success', 'Let\'s Fill Your Wallet', 'success')
+                this.$router.push('/main/dashboard')
+              } else {
+                Swal.fire('Success', 'Welcome Admin', 'success')
+                this.$router.push('/admin')
+              }
             } else {
               axios.patch(`${process.env.VUE_APP_BASE_URL}/auth/first`, { id })
                 .then(() => {
