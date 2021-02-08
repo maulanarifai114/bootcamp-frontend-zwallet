@@ -64,14 +64,7 @@ export default {
   data () {
     return {
       image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
-      data: [
-        {
-          id: '123',
-          name: 'Raden Maulana Rifa\'i Abdullah',
-          phone: '+6285771926851',
-          photo: ''
-        }
-      ],
+      data: [],
       bottom: false
     }
   },
@@ -107,10 +100,10 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`${process.env.VUE_APP_BASE_URL}/history`, { data: { id: itemId } })
+          axios.delete(`${process.env.VUE_APP_BASE_URL}/admin`, { data: { id: itemId } })
             .then((res) => {
               Swal.fire('Deleted!', 'History has been deleted.', 'success')
-              this.getAllHistory()
+              this.getAllUsers()
             })
             .catch((err) => {
               console.log(err.response.data)
@@ -125,7 +118,31 @@ export default {
       const pageHeight = document.documentElement.scrollHeight
       const bottomOfPage = visible + scrollY >= pageHeight
       return bottomOfPage || pageHeight < visible
+    },
+    getAllUsers () {
+      axios.get(`${process.env.VUE_APP_BASE_URL}/admin`)
+        .then((res) => {
+          this.data = res.data.result
+        })
+        .catch((err) => {
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
+    },
+    getAllUsersLimit () {
+      const last = this.data.length - 1
+      axios.get(`${process.env.VUE_APP_BASE_URL}/admin/limit?date=${this.data[last].date}`)
+        .then((res) => {
+          res.data.result.forEach((value) => {
+            this.data.push(value)
+          })
+        })
+        .catch((err) => {
+          Swal.fire('Failed', err.response.data.err, 'error')
+        })
     }
+  },
+  mounted () {
+    this.getAllUsers()
   },
   created () {
     this.getProfileZ()
@@ -133,39 +150,16 @@ export default {
       this.bottom = this.bottomVisible()
     })
   },
-  // methods: {
-  // getAllHistory () {
-  //   axios.get(`${process.env.VUE_APP_BASE_URL}/history?id=${this.$store.getters['profile/getId']}&sort=${this.sort}`)
-  //     .then((res) => {
-  //       this.data = res.data.result
-  //     })
-  //     .catch((err) => {
-  //       Swal.fire('Failed', err.response.data.err, 'error')
-  //     })
-  // },
-  // getAllHistoryLimit () {
-  //   const last = this.data.length - 1
-  //   axios.get(`${process.env.VUE_APP_BASE_URL}/history/limit?id=${this.$store.getters['profile/getId']}&sort=${this.sort}&date=${this.data[last].date}`)
-  //     .then((res) => {
-  //       res.data.result.forEach((value) => {
-  //         this.data.push(value)
-  //       })
-  //     })
-  //     .catch((err) => {
-  //       Swal.fire('Failed', err.response.data.err, 'error')
-  //     })
-  // },
-  // },
-  // watch: {
-  // bottom (isBottom) {
-  //   if (isBottom === true) {
-  //     this.getAllHistoryLimit()
-  //   }
-  // }
-  // currentId (newValue) {
-  //   newValue !== '' ? this.getAllHistory() : this.getAllHistory()
-  // }
-  // },
+  watch: {
+    bottom (isBottom) {
+      if (isBottom === true) {
+        this.getAllUsersLimit()
+      }
+    },
+    currentId (newValue) {
+      newValue !== '' ? this.getAllUsers() : this.getAllUsers()
+    }
+  },
   computed: {
     ...mapGetters({ currentId: 'profile/getId' })
   }
