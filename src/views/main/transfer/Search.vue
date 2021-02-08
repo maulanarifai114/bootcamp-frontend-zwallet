@@ -43,7 +43,11 @@ export default {
   methods: {
     ...mapMutations({ receiver: 'transfer/SET_RECEIVER' }),
     phone (phone) {
-      return parsePhoneNumber(phone).formatInternational()
+      if (phone === '+62') {
+        return phone
+      } else {
+        return parsePhoneNumber(phone).formatInternational()
+      }
     },
     getReceiver (item) {
       this.receiver(item)
