@@ -1,5 +1,5 @@
 <p align="center">
-  <p>Zwallet - App that Covering Banking Needs</p>
+  <h1 align="center">Zwallet - App that Covering Banking Needs</h1>
   <a href="https://github.com/maulanarifai114/frontend-zwallet">
     <img src="./src/mockup/desktop.png"  alt="mockup">
   </a>
