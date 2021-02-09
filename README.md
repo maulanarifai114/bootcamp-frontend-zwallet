@@ -9,7 +9,7 @@
   <br/>
     <a href="https://github.com/maulanarifai114/frontend-zwallet"><strong>Explore the docs »</strong></a>
     <br /><br/>
-    <a href="https://zwallet-raden.netlify.app">View Demo</a>
+    <a href="https://zwallet-raden.netlify.app" target="_blank">View Demo</a>
     ·
     <a href="https://github.com/maulanarifai114/frontend-zwallet/issues">Report Bug</a>
     ·
