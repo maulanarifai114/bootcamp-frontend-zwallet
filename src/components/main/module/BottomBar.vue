@@ -103,7 +103,7 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 28px;
   padding: 0 33px;
-  z-index: 2000;
+  z-index: 1001;
 }
 
 .active-tab, .inactive-tab {

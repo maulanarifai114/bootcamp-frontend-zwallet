@@ -1,9 +1,12 @@
 <template>
-  <div class="history">
+  <div class="history d-flex flex-column">
     <!-- Title -->
     <div class="wrap-title-history d-flex align-items-center justify-content-between">
       <h3 class="title-history">Transaction History</h3>
       <h6 @click="goHistory" class="see-all">See All</h6>
+    </div>
+    <div class="d-flex justify-content-center flex-fill align-items-center" v-if="data.length === 0">
+      <h6 class="have-not">You haven't made a transaction</h6>
     </div>
     <!-- Start Loop -->
     <div @click="goHistory" class="d-flex wrap-all" v-for="(item, index) in data" :key="index" >
@@ -82,6 +85,13 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
   padding: 30px
+}
+
+.have-not {
+  color: rgba(122, 120, 134, 0.5);
+  font-size: 24px;
+  text-align: center;
+  line-height: 1.3em;
 }
 
 .wrap-all {

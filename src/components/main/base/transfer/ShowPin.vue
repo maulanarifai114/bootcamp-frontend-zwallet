@@ -106,7 +106,7 @@ export default {
       const pinBox = this.pinBox
       const pin = `${pinBox.pinOne}${pinBox.pinTwo}${pinBox.pinThree}${pinBox.pinFour}${pinBox.pinFive}${pinBox.pinSix}`
       const failed = () => {
-        Swal.fire('Failed', 'Pin must be number', 'error')
+        this.isLoading = 0
         this.pinBox = {
           pinOne: '',
           pinTwo: '',
@@ -116,8 +116,7 @@ export default {
           pinSix: ''
         }
         this.setStatus(data)
-        Swal.fire('Failed', 'An error occurred', 'error')
-        this.$router.push('/main/failed')
+        Swal.fire('Failed', 'PIN must be number', 'error')
       }
       const success = () => {
         send.pin = pin
@@ -131,7 +130,12 @@ export default {
           })
           .catch((err) => {
             this.isLoading = 0
-            Swal.fire('Failed', err.response.data.err, 'error')
+            if (err.response.data.result === 'The Balance Is Not Sufficient') {
+              Swal.fire('Failed', err.response.data.result, 'error')
+            } else {
+              Swal.fire('Failed', err.response.data.err, 'error')
+              this.$router.push('/main/failed')
+            }
           })
       }
       !regex.test(pin) ? failed() : success()
@@ -150,7 +154,7 @@ export default {
   width: 100%;
   height: 100%;
   background: rgba(58, 61, 66, 0.5);
-  z-index: 2001;
+  z-index: 1002;
 }
 
 .title-pin {
